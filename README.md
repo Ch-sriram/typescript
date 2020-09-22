@@ -20,7 +20,7 @@ This repository is created for my own reference/revision for the language Typesc
 
 ## Contents
 
-### Why Write Code In Typescript?
+### I. Why Write Code In Typescript?
 
 API Used: **<https://jsonplaceholder.typicode.com>**
 Endpoints Used: **[/todos](https://jsonplaceholder.typicode.com/todos)**
@@ -30,3 +30,4 @@ Dependencies Used: **`npm i --save axios`**
 2. Executing TS Code Using `tsc`, `node` & `ts-node`: [Commit Details](https://github.com/Ch-sriram/typescript/commit/4ea4ea72c8c8ccd352aa2061c103c90f0642e0c8)
 3. Introducing a Bug: [Commit Details](https://github.com/Ch-sriram/typescript/commit/8c7b795ea615db5dcea8d80ab98465878b19a658)
 4. Catching Errors with Typescript using `interface`: [Commit Details](https://github.com/Ch-sriram/typescript/commit/3e39fd5bcc47dda4d4c314b13315336efd4d98ea)
+5. Introducing Another Bug Using A Function: [Commit Details]()
