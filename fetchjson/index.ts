@@ -22,10 +22,11 @@ axios
 
     // we'll call logTodo() defined below in here, but we'll
     // deliberately change the order of the parameters we send.
-    logTodo(id, completed, title); // with normal JS, this is perfectly fine.
+    // logTodo(id, completed, title); // with TS, we will get an error in the code editor itself.
+    logTodo(id, title, completed);
   });
-  
-const logTodo = (id, title, completed) => {
+
+const logTodo = (id: number, title: string, completed: boolean) => {
   console.log(`
     The Todo with ID: ${id}
     Has a title of: ${title}
@@ -38,6 +39,6 @@ const logTodo = (id, title, completed) => {
  * ------
  *
       The Todo with ID: 1
-      Has a title of: false
-      Is it finished? delectus aut autem
+      Has a title of: delectus aut autem
+      Is it finished? false
  */
