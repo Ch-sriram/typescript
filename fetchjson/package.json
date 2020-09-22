@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Chandrabhatta Sriram",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0"
