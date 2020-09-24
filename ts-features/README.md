@@ -1,4 +1,4 @@
-# What as a Type System?
+# What is a Type System?
 
 A system where we make sure that every `value` in the code, has a **`type`** associated to it.
 
