@@ -36,4 +36,4 @@ Dependencies Used: **`npm i --save axios`**
 ### II. The Type System
 
 1. **[What are Types? More on Types. Where do we use Types?](./ts-features/README.md)** <&mdash; **READ THIS BEFORE MOVING AHEAD ⭐⭐⭐**
-2. Examples of Types: [Commit Details]()
+2. Examples of Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/fd258d015fb3efdef93370da4f113b5bcff93630)
