@@ -31,3 +31,10 @@ A system where we make sure that every `value` in the code, has a **`type`** ass
 ## Where do we use these Types?
 
 We kind of use these types everywhere. It always better to have a system which is type-safe. If we find the errors during the development stage itself and fix them then and there, the testing of the applications becomes much easier and so, there will be less number of bugs/errors popping up when the app is being used in production.
+
+## What is Type Annotation & Type Inference?
+
+Type Annotation & Type Inference are actually 2 different features inside of TS. But these 2 different features work in parallel and apply slightly differently to Variables, Functions & Objects.
+
+- **Type Annotations**: Code we add to tell TS what type of value a variable will refer to. Basically, we (the developers & programmers) tell Typescript what the type of a certain variable/function/object is.
+- **Type Inference**: TS tries to figure out what type of value a variable refers to. Here, Typescript guesses the type of the variable/function/object for which, the types have already been annotated.

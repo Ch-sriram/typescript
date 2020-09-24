@@ -37,3 +37,7 @@ Dependencies Used: **`npm i --save axios`**
 
 1. **[What are Types? More on Types. Where do we use Types?](./ts-features/README.md)** &#8592; **READ THIS BEFORE MOVING AHEAD ⭐⭐⭐**
 2. Examples of Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/fd258d015fb3efdef93370da4f113b5bcff93630)
+
+### III. Type Annotations In Action
+
+1. **[What is Type Annotation & Type Inference?]()**
