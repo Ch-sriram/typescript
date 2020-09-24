@@ -35,3 +35,26 @@ let car: Car = new Car();
 // Object Literals
 let point: { x: number; y: number; } = { x: 10, y: 20, };
 // let point2: { x: number; y: number; } = { x: "", y: 30 }; // error: Type 'string' is not assignable to type 'number'.ts(2322). variables.ts(37, 15): The expected type comes from property 'x' which is declared here on type '{ x: number; y: number; }'
+
+// TYPE ANNOTATIONS for a FUNCTION
+
+/**
+ * For a function, there are 2 important things:
+ *  1. what are the arguments a function takes.
+ *  2. What is the return type of the function.
+ * These 2 points are important when we are trying to annotate
+ * the type for a function.
+ */
+
+//               |------------------TYPE ANNOTATIONS---------------|  |-----------------FUNCTION IMPLEMENTATION------------------|
+//    func_name: (param1: type1, ..., paramN: typeN) => return_type = (param1: type1, ..., paramN: typeN) => { // function body };
+
+//    func_name: |-TYPE ANNOTATIONS-|  |--FUNCTION IMPLEMENTATION---|
+const logNumber: (i: number) => void = (i: number) => console.log(i);
+logNumber(10);
+
+/**
+ * Output:
+ * ------
+ * 10
+ */

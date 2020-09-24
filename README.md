@@ -6,7 +6,8 @@ This repository is created for my own reference/revision for the language Typesc
 ## Resources
 
 1. **[Typescript: The Complete Developer's Guide [2020] by Stephen Grider](https://www.udemy.com/course/typescript-the-complete-developers-guide/)**
-2. **[Typescript Language Official Docs](https://www.typescriptlang.org/docs/)**
+2. **[Understanding TypeScript - 2020 Edition by Maximilian Schwarzuller](https://www.udemy.com/course/understanding-typescript/)**
+3. **[Typescript Language Official Docs](https://www.typescriptlang.org/docs/)**
 
 ## Required Dependencies
 
@@ -43,3 +44,4 @@ Dependencies Used: **`npm i --save axios`**
 1. **[What is Type Annotation & Type Inference?](https://github.com/Ch-sriram/typescript/tree/dev/ts-features#what-is-type-annotation--type-inference)**
 2. Type Annotations with Variables: [Commit Details](https://github.com/Ch-sriram/typescript/commit/eecd06b4cf20d4164f230a3c3fbe516b7316c37a)
 3. Basic Type Annotations with Arrays, Classes & Object Literals: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bdb6c7ff6a2b05bd933f52ff3611654a5f234c45)
+4. Basic Type Annotation with Functions: [Commit Details]()
