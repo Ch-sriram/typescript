@@ -35,4 +35,4 @@ Dependencies Used: **`npm i --save axios`**
 
 ### II. The Type System
 
-1. **[What are Types? More on Types. Where do we use Types?](./ts-features/README.md)** &mdash; **<- READ THIS BEFORE MOVING AHEAD [VERY IMPORTANT!!] ⭐⭐⭐**
+1. **[What are Types? More on Types. Where do we use Types?](./ts-features/README.md)** <&mdash; **READ THIS BEFORE MOVING AHEAD ⭐⭐⭐**
