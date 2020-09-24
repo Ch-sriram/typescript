@@ -35,7 +35,4 @@ Dependencies Used: **`npm i --save axios`**
 
 ### II. The Type System
 
-- What is a Type?
-  - Easy way to refer to the different **`properties`** & **`functions`**, that a **`value`** has.
-  - `value`: In JS & TS, a `value` is any data that we assign to a variable, and so, to a variable, we can assign the following `value`s: `string`s, `number`s, `boolean`s, `null`s, `undefined`, `object`s, `function`s, `class`es, `array`s, and so on... All of these different values, have types, i.e., An `object` has a type, a `function` has a type, an `array` has a type, and so on...
-  - So when we refer to the **`type`** of a `value`, we're trying to also refer to the different kind of `properties` and `functions` that that particular `value` with that particular `type` has. <br> Example: `"red"` is a `string` type `value`. By which, we can also infer that `"red"` is a `value` that has all the `properties` and `methods` that we assume that a `string` has.
+1. **[What are Types? More on Types. Where do we use Types?](./ts-features/README.md)** &mdash; **<- READ THIS BEFORE MOVING AHEAD [VERY IMPORTANT!!] ⭐⭐⭐**
