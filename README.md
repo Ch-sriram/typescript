@@ -41,3 +41,4 @@ Dependencies Used: **`npm i --save axios`**
 ### III. Type Annotations In Action
 
 1. **[What is Type Annotation & Type Inference?](https://github.com/Ch-sriram/typescript/tree/dev/ts-features#what-is-type-annotation--type-inference)**
+2. Type Annotations with Variables: [Commit Details]()
