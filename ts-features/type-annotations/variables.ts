@@ -74,6 +74,14 @@ console.log(coordinates); // { x: 10, y: 20 }
 
 
 // 3. When we have a variable to have a type that can't be inferred
+const numbers = [-10, -1, 12];
+let numberAboveZero: boolean | number;
+
+for (let i = 0; i < numbers.length; ++i)
+  if (numbers[i] > 0)
+    numberAboveZero = numbers[i];
+
+console.log(numberAboveZero);
 
 /**
  * Output:
@@ -81,4 +89,5 @@ console.log(coordinates); // { x: 10, y: 20 }
  * 10
  * true
  * { x: 10, y: 20 }
+ * 12
  */
