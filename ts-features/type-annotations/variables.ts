@@ -51,10 +51,34 @@ let point: { x: number; y: number; } = { x: 10, y: 20, };
 
 //    func_name: |-TYPE ANNOTATIONS-|  |--FUNCTION IMPLEMENTATION---|
 const logNumber: (i: number) => void = (i: number) => console.log(i);
-logNumber(10);
+logNumber(10); // 10
+
+// WHEN TO USE TYPE ANNOTATIONS
+
+// 1. Delayed Initialization - Declare in a line, initialize it somewhere else.
+const words = ['red', 'green', 'blue'];
+let wordFound: boolean;
+
+for (let i = 0; i < words.length; ++i)
+  if (words[i] === 'green')
+    wordFound = true;
+
+console.log(wordFound); // true
+
+
+// 2. Function that returns the 'any' type
+const json = '{"x": 10, "y": 20}';
+// const coordinates = JSON.parse(json); // typeof `coordinates` here is 'any'
+const coordinates: { x: number; y: number; } = JSON.parse(json); // here, the type of `coordinates` is not 'any', but it is of type { x: number; y: number }, as the annotation suggests.
+console.log(coordinates); // { x: 10, y: 20 }
+
+
+// 3. When we have a variable to have a type that can't be inferred
 
 /**
  * Output:
  * ------
  * 10
+ * true
+ * { x: 10, y: 20 }
  */

@@ -38,3 +38,28 @@ Type Annotation & Type Inference are actually 2 different features inside of TS.
 
 - **Type Annotations**: Code we add to tell TS what type of value a variable will refer to. Basically, we (the developers & programmers) tell Typescript what the type of a certain variable/function/object is.
 - **Type Inference**: TS tries to figure out what type of value a variable refers to. Here, Typescript guesses the type of the variable/function/object for which, the types have already been annotated.
+
+### Type Inference In-Depth
+
+Whenever we make a variable/const, we can do so in 2 ways:
+
+1. **Declare and initialize the variable in a single line**. <br> Example: <pre>`const color = "red";` // here, the type of `color` will be inferred by TS to be a `'string'`</pre>
+2. **Declare the variable, and initialize it later**. <br> Example: <pre>`let color;`<br>`color = "red";` // here, the type of `color` will be inferred by TS to be `any` type</pre>
+
+**Therefore, whenever we declare and initialize on the same line, TS will figure out the type for us.** **But whenever we declare in one line, and initialize in another line, TS will infer the type of the variable to be `any`.**
+
+#### When do we rely on Type Inference compared to Type Annotation?
+
+In general, we're going to rely on Type Inference, always! *i.e.*, whenever we can, we'll rely on Type Inference (viz. declaring and initializing the variable without annotating the type).
+
+But there are scenarios where we rely on Type Annotation, and these scenarios are:
+
+1. Whenever we declare a variable on one line then initialize it later. <br> Example:
+   - Instead of this: <pre>`let color;` // no annotation given => type of `color` is `any`<br>`color = "red";`</pre> 
+   - We will do this: <pre>`let color: string;` // type is annotated => type of `color` is `'string'`<br>`color = "red";`</pre>
+2. When a function returns the **`any`** type and we need to clarify the value. <br>Example: A good example for this problem is the usage of the **`JSON.parse()`** method.
+   - Instead of this: <pre>`const json = '{"x": 10, "y": 20}';` // `json` is exactly of type `{"x": 10, "y": 20}`<br>`const coordinates = JSON.parse(json);` //`coordinates` is of type **`any`**<br>`console.log(coordinates);` // { x: 10, y: 20 }</pre>
+   - We will do this:<pre>`const json = '{"x": 10, "y": 20}';` // `json` is exactly of type `{"x": 10, "y": 20}`<br>`const coordinates: { x: number; y: number; } = JSON.parse(json);` // `coordinates` is of type `'{ x: number; y: number }'`, not of type `'any'`<br>`console.log(coordinates);` // { x: 10, y: 20 }</pre>
+3. When we have a variable to have a type that can't be inferred. <br>Example: We can use the pipe (`|`) operator to showcase this.
+   - Instead of this: <pre>`let numbers = [-10, 01, 12];`<br>`let numberAboveZero = false;` // type of `numberAboveZero` inferred by TS is `'boolean'`<br><br>`for (let i = 0; i < numbers.length; ++i) {`<br>  `if (numbers[i] > 0) {`<br>    `numberAboveZero = numbers[i];` // error: Type 'number' is not assignable to type 'boolean' ts(2322).<br>  `}`<br>`}`</pre>
+   - We want this, where we can use more than one type for a variable: <pre>`let numbers = [-10, 01, 12];`<br>`let numberAboveZero: boolean | number;` // type of `numberAboveZero` inferred by TS is either `'boolean'` or `'number'`<br><br>`for (let i = 0; i < numbers.length; ++i) {`<br>  `if (numbers[i] > 0) {`<br>    `numberAboveZero = numbers[i];` // no error.<br>  `}`<br>`}`</pre>
