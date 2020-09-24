@@ -17,7 +17,7 @@ A system where we make sure that every `value` in the code, has a **`type`** ass
   |number|`.000025`, `-20`, `40000000`|
   |boolean|`true`, `false`|
   |Date|`new Date()`|
-  |Todo|`{ id: 1, title: "Something", completed: true }`|
+  |Todo|`{ id: 1, title: "Something", completed: true }`| <br>
   As we can see from the table above, **every `value` in typescript, has a type**, i.e., even when we make a `Date()` object, that in itself has a type of **Date**. And for the the object with the `value` as the following `{ id: 1, title: "Something", completed: true }` also can have a type called **Todo**, if that's the `interface` for the object that we made in the codebase (viz. `interface Todo { id: number; title: string; completed: boolean; }`)
 - How do these types relate to each other?
   - In the world of TS, we've two different categories of types:
