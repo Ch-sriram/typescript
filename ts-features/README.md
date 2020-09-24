@@ -18,15 +18,15 @@ A system where we make sure that every `value` in the code, has a **`type`** ass
   |boolean|`true`, `false`|
   |Date|`new Date()`|
   |Todo|`{ id: 1, title: "Something", completed: true }`|
-  
+
   As we can see from the table above, **every `value` in typescript, has a type**, i.e., even when we make a `Date()` object, that in itself has a type of **Date**. And for the the object with the `value` as the following `{ id: 1, title: "Something", completed: true }` also can have a type called **Todo**, if that's the `interface` for the object that we made in the codebase (viz. `interface Todo { id: number; title: string; completed: boolean; }`)
 - How do these types relate to each other?
   - In the world of TS, we've two different categories of types:
-    1. Primitive Types: These are the basic types in TS, which are `number`, `boolean`, `void`, `undefined`, `string`, `symbol` and `null`.
-    2. Object Types: These are types that the user can create, or some of the object types are built into the language itself, and these object types are (not limited to) `function`s, `array`s, `class`es and `object`s.
-  - Why do we care about types at all? <br> For that, we have 2 reasons:
-    1. Types are used by the Typescript Compiler to analyze our code for errors. Eg: If a value that we access has a type already defined in TS, and if we try to access some property/method that doesn't exist for that type, then TS will throw an error saying "Property/Method doesn't exist on type &lt;type of the `value`>".
-    2. Types allow other engineers to understand what values are flowing around our codebase. Eg: When working in a large codebase, sometimes the programmers might use very poorly written argument names such as `a`, `t`, `d`, etc, and to know the type associated to these kind of argument names is really hard. And so, if we know the types related to these kind of argument names, it would make the life of other engineers easier to go through the codebase and understand what the code does.
+    1. **Primitive Types**: These are the basic types in TS, which are `number`, `boolean`, `void`, `undefined`, `string`, `symbol` and `null`.
+    2. **Object Types**: These are types that the user can create, or some of the object types are built into the language itself, and these object types are (not limited to) `function`s, `array`s, `class`es and `object`s.
+  - Why do we care about types at all? <br> We care about types primarily because of the following 2 reasons:
+    1. **Types are used by the Typescript Compiler to analyze our code for errors**. Eg: If a value that we access has a type already defined in TS, and if we try to access some property/method that doesn't exist for that type, then TS will throw an error saying "Property/Method doesn't exist on type &lt;type of the `value`>".
+    2. **Types allow other engineers to understand what values are flowing around our codebase**. Eg: When working in a large codebase, sometimes the programmers might use very poorly written argument names such as `a`, `t`, `d`, etc, and to know the type associated to these kind of argument names is really hard. And so, if we know the types related to these kind of argument names, it would make the life of other engineers easier to go through the codebase and understand what the code does.
 
 ## Where do we use these Types?
 
