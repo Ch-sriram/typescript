@@ -54,4 +54,4 @@ Dependencies Used: **`npm i --save axios`**
 3. Annotations for Anonymous Functions: [Commit Details](https://github.com/Ch-sriram/typescript/commit/411ce88ef00c5d1c5580903cb7aaad388dca8ecc)
 4. Functions returning `void` and `never` typed values: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bb05701b118c11ad9a152660badaef947b3aca73)
 5. Destructuring Objects with Type Annotations: [Commit Details](https://github.com/Ch-sriram/typescript/commit/9c0f7e4c0a04241ad9dda8969ec077e9553aa9f7)
-6. Complex Example of Destructuring Objects with Type Annotations: [Commit Details]()
+6. Complex Example of Destructuring Objects with Type Annotations: [Commit Details](https://github.com/Ch-sriram/typescript/commit/374229aab6f081251d60ba82565a545c21bb17bd)
