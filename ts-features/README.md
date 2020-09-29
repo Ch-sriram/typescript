@@ -67,6 +67,8 @@ But there are scenarios where we rely on Type Annotation, and these scenarios ar
 ### Function Specific Type Annotation/Inference
 
 - **Type Annotations for Functions**: Code we add to tell Typescript what type of arguments a function will receive and what type of values it will return.
-- **Type Inference for Functions**: Typescript tries to figure out what type of value a function will return. Therefore, the caveat is that TS will only infer the value that can be returned from a function by reading the function body, but TS will not figure out what type of value the arguments passed into the function are.
+- **Type Inference for Functions**: Typescript tries to figure out what type of value a function will return. 
+  - Therefore, the caveat is that TS will only infer the value that can be returned from a function by reading the function body, but TS will not figure out what type arguments passed into the function are.
+  - Although, type inference works out the output (return value), we won't use it because we don't want to leave the return type of a function to TS, as we define the functions, we should also be able to write functions where we know what we want to return, and so, we should be defining and annotating what we return from a function.
 
 The difference here is that we're no longer adding type annotations for the variable declaration, instead we're annotating the function itself.

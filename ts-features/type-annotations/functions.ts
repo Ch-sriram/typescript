@@ -14,3 +14,21 @@ const add = (a, b) => { }; // hover on `add` and we'll see this: const add: (a: 
  * frankly should be avoided as much as necessary.
  */
 const add2 = (a: number, b: number): number => (a + b);
+
+/**
+ * If we don't annotate the return value's type during function
+ * definition, we might be shooting ourselves in the foot ---
+ * because we always know what we want to return from a 
+ * function, and so, even if we make a mistake in the the code,
+ * when we try to return something that shouldn't be the one 
+ * that should be returned, we should get a warning when 
+ * returning something we don't want to return, and that's 
+ * because of the annotation for the return type on the 
+ * function definition.
+ */
+const subtract = (a: number, b: number) => {
+  a - b;
+};
+
+// annotation for `subtract` when we hover on it is the following: const subtract: (a: number, b: number) => void
+// we can see that it is returning nothing, as the return type is void, as inferred by TS. So we generally never use TS inference for return value of functions.
