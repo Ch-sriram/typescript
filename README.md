@@ -50,4 +50,4 @@ Dependencies Used: **`npm i --save axios`**
 ### IV. Type Annotations with Functions & Objects
 
 1. **[More on Annotations Around Functions](./ts-features/README.md#function-specific-type-annotationinference)**: [Commit Details](https://github.com/Ch-sriram/typescript/commit/c257b0e5aa79e84be9e550d1c7c92bfd0dba3ece)
-2. **[Inference Around Functions](./ts-features/README.md#function-specific-type-annotationinference)**: [Commit Details]()
+2. **[Inference Around Functions](./ts-features/README.md#function-specific-type-annotationinference)**: [Commit Details](https://github.com/Ch-sriram/typescript/commit/cca31b79928b54dbae5a2139298ed029fa5512d9)
