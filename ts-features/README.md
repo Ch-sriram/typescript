@@ -63,3 +63,10 @@ But there are scenarios where we rely on Type Annotation, and these scenarios ar
 3. When we have a variable to have a type that can't be inferred. <br>Example: We can use the pipe (`|`) operator to showcase this.
    - Instead of this: <pre>`let numbers = [-10, 01, 12];`<br>`let numberAboveZero = false;` // type of `numberAboveZero` inferred by TS is `'boolean'`<br><br>`for (let i = 0; i < numbers.length; ++i) {`<br>  `if (numbers[i] > 0) {`<br>    `numberAboveZero = numbers[i];` // error: Type 'number' is not assignable to type 'boolean' ts(2322).<br>  `}`<br>`}`</pre>
    - We want this, where we can use more than one type for a variable: <pre>`let numbers = [-10, 01, 12];`<br>`let numberAboveZero: boolean | number;` // type of `numberAboveZero` inferred by TS is either `'boolean'` or `'number'`<br><br>`for (let i = 0; i < numbers.length; ++i) {`<br>  `if (numbers[i] > 0) {`<br>    `numberAboveZero = numbers[i];` // no error.<br>  `}`<br>`}`</pre>
+
+### Function Specific Type Annotation/Inference
+
+- **Type Annotations for Functions**: Code we add to tell Typescript what type of arguments a function will receive and what type of values it will return.
+- **Type Inference for Functions**: Typescript tries to figure out what type of value a function will return. Therefore, the caveat is that TS will only infer the value that can be returned from a function by reading the function body, but TS will not figure out what type of value the arguments passed into the function are.
+
+The difference here is that we're no longer adding type annotations for the variable declaration, instead we're annotating the function itself.

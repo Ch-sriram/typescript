@@ -50,8 +50,19 @@ let point: { x: number; y: number; } = { x: 10, y: 20, };
 //    func_name: (param1: type1, ..., paramN: typeN) => return_type = (param1: type1, ..., paramN: typeN) => { // function body };
 
 //    func_name: |-TYPE ANNOTATIONS-|  |--FUNCTION IMPLEMENTATION---|
-const logNumber: (i: number) => void = (i: number) => console.log(i);
+const logNumber: (arg0: number) => void = (i: number) => console.log(i);
 logNumber(10); // 10
+
+/**
+ * In the function above, the `TYPE ANNOTATION` part as shown 
+ * in line 53 is for the variable, not the function, i.e.,
+ *    const logNumber: (arg0: number) => void;
+ * Now, `logNumber` is a variable that can only accept a 
+ * function of that particular signature.
+ * 
+ * So now, we will move on to add annotations to a function,
+ * i.e., adding annotations to the `FUNCTION IMPLEMENTATION` Part as shown in line 53.
+ */
 
 // WHEN TO USE TYPE ANNOTATIONS
 

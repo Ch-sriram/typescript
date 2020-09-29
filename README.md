@@ -46,3 +46,7 @@ Dependencies Used: **`npm i --save axios`**
 3. Basic Type Annotations with Arrays, Classes & Object Literals: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bdb6c7ff6a2b05bd933f52ff3611654a5f234c45)
 4. Basic Type Annotation with Functions: [Commit Details](https://github.com/Ch-sriram/typescript/commit/6313b30afe7e52e05c4bbb358e08165a231e4046)
 5. **[Understanding Type Inference In-Depth](https://github.com/Ch-sriram/typescript/tree/dev/ts-features#type-inference-in-depth)**: **[Commit Detail #1](https://github.com/Ch-sriram/typescript/commit/cdea5db951241663887dc52ce7e4e0f0dd4f4541)** & **[Commit Detail #2](https://github.com/Ch-sriram/typescript/commit/ff1c206a3de5b2da587513386b4df3662d8d937a)** &#8592; **VERY IMPORTANT ⭐⭐⭐**
+
+### IV. Type Annotations with Functions & Objects
+
+1. **[More on Annotations Around Functions]()**: [Commit Details]()
