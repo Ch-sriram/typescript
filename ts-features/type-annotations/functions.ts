@@ -32,3 +32,19 @@ const subtract = (a: number, b: number) => {
 
 // annotation for `subtract` when we hover on it is the following: const subtract: (a: number, b: number) => void
 // we can see that it is returning nothing, as the return type is void, as inferred by TS. So we generally never use TS inference for return value of functions.
+
+
+// Type Annotation for a function definition (not a function expression)
+function divide(a: number, b: number): number {
+  return a / b;
+}
+
+// Type Annotation for an anonymous function expression
+const multiply = function (a: number, b: number): number {
+  return a * b;
+};
+
+/**
+ * Annotation syntax for arrow functions, anonymous functions 
+ * & normal function definitions are similar.
+ */
