@@ -66,3 +66,9 @@ Dependencies Used: **`npm i --save axios`**
 
 1. Tuples in Action && Intro to Type Aliasing: [Commit Details](https://github.com/Ch-sriram/typescript/commit/675145849b1c9278a6d4f797795bf42b145eb911)
 2. Why Tuples & Why Not Tuples? [Commit Details](https://github.com/Ch-sriram/typescript/commit/bf687d40ee674359d85a9f81703be68e7607e782)
+
+### VII. Interfaces ⭐⭐⭐
+
+1. What are Interfaces?
+   - **`interface` creates a new type, describing the property names and value types of an object.**
+2. Long Type Annotations: [Commit Details]()
