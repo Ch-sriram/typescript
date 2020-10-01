@@ -72,4 +72,4 @@ Dependencies Used: **`npm i --save axios`**
 1. What are Interfaces?
    - **`interface` creates a new type, describing the property names and value types of an object.**
 2. Long Type Annotations: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bafcb289621cda280e04be295ca7cfebf3e1c636)
-3. Fixing Long Annotations with `interface`s: [Commit Details]()
+3. Fixing Long Annotations with `interface`s: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5f2439ce203aa06dfdcb9dc8bf3359e9f0dded29)
