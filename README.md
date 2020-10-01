@@ -59,4 +59,4 @@ Dependencies Used: **`npm i --save axios`**
 ### V. Mastering Typed Arrays
 
 1. Arrays in Typescript: [Commit Details](https://github.com/Ch-sriram/typescript/commit/145dfa50818785654f170d5da50c15223307cd7c)
-2. Why Typed Arrays?: [Commit Details]()
+2. Why Typed Arrays?: [Commit Details](https://github.com/Ch-sriram/typescript/commit/8045606cab5cadac856461b1fd121dc2da1d65f4)
