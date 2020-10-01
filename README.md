@@ -60,4 +60,4 @@ Dependencies Used: **`npm i --save axios`**
 
 1. Arrays in Typescript: [Commit Details](https://github.com/Ch-sriram/typescript/commit/145dfa50818785654f170d5da50c15223307cd7c)
 2. Why Typed Arrays?: [Commit Details](https://github.com/Ch-sriram/typescript/commit/8045606cab5cadac856461b1fd121dc2da1d65f4)
-3. Multiple Types in Arrays: [Commit Details]()
+3. Multiple Types in Arrays: [Commit Details](https://github.com/Ch-sriram/typescript/commit/842c938b3ae5c8a036f731d5ee08cc0128f1e102)
