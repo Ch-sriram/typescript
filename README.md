@@ -65,3 +65,4 @@ Dependencies Used: **`npm i --save axios`**
 ### VI. Tuples in Typescript
 
 1. Tuples in Action && Intro to Type Aliasing: [Commit Details](https://github.com/Ch-sriram/typescript/commit/675145849b1c9278a6d4f797795bf42b145eb911)
+2. Why Tuples & Why Not Tuples? [Commit Details]()

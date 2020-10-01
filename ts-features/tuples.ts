@@ -52,3 +52,39 @@ type Drink = [string, boolean, number]; // Drink is an alias for the tuple with 
 const sprite: Drink = ['clear', true, 40]; // same as -- const sprite: [string, boolean, number] = ['clear', true, 40];
 const water: Drink = ['clear', false, 0];
 const tea: Drink = ['brown', false, 0];
+
+// Why Tuples & Why Not Tuples?
+
+/**
+ * Let's make a tuple called `carSpecs` which has some data 
+ * with a real important meaning.
+ */
+const carSpecs: [number, number] = [400, 3354];
+
+/**
+ * By simply looking at `carSpecs` tuple, we cannot say what
+ * the numbers inside the tuple mean for us as engineers.
+ * 
+ * So now, let's try writing out that same tuple as an object.
+ */
+
+const carStats = { horsepower: 400, weight: 3354 };
+
+/**
+ * We can see that `carStats`, as an object, is very obvious
+ * with the <key: value> pairs it has, and so, there's lesser
+ * amount of ambiguity in the values.
+ * 
+ * Therefore, whenever we make use of an object when we model 
+ * a record, it is extremely clear what we are working with at
+ * one glance. But when we are working with tuples, it is much
+ * harder to understand what's going on at a glance of the 
+ * data.
+ * 
+ * In general, whenever we have to persist records in the TS/JS
+ * application, we use objects.
+ * 
+ * There are some corner cases where we use tuples, and there, 
+ * tuples really shine, like for example, to store/retrieve 
+ * records in/from a CSV file.
+ */
