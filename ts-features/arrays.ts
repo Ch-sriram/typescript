@@ -36,3 +36,16 @@ const carsByMake = [['f150'], ['corolla'], ['camaro']]; // when we hover on `car
 
 // Again, if we are not initializing the array with anything, in that case, we have to annotate the type of the array, as shown below.
 const carsByMake2: string[][] = []; // 'string[][]' means (read from right to left) an array which refers to a array of strings.
+
+
+// WHY TYPED ARRAYS?
+
+// Reason #1: TS can do type inference when extracting values from an array
+const car = carMakers[0]; // hover over `car` and we'll see that `car` is of type 'string' because `carMakers` is of type 'string[]'.
+const myCar = carMakers.pop(); // typeof myCar is 'string' shown as: const myCar: string.
+
+// Reason #2: TS can prevent us from adding incompatible values to the array.
+// carMakers.push(100); // error: Argument of type 'number' is not assignable to parameter of type 'string'.ts(2345)
+
+// Reason 3: We can get help with 'map', 'forEach', 'reduce', etc functions
+const carMakers5 = carMakers2.map((car: string): string => car.toUpperCase()); // TS will infer the type of the 'map()' function and also TS will provide ample amount of help with autocomplete in the code editor.
