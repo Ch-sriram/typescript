@@ -49,3 +49,24 @@ const myCar = carMakers.pop(); // typeof myCar is 'string' shown as: const myCar
 
 // Reason 3: We can get help with 'map', 'forEach', 'reduce', etc functions
 const carMakers5 = carMakers2.map((car: string): string => car.toUpperCase()); // TS will infer the type of the 'map()' function and also TS will provide ample amount of help with autocomplete in the code editor.
+
+// Reason 4: A single array can have multiple types.
+
+
+/**
+ * `importantDates` contain Date values, but some of them are 
+ * Date objects, and some of them are strings --- and so, we 
+ * can let TS infer that by just initializing the array with 
+ * all the types of values in the array as shown below (this 
+ * way is not recommended).
+ */
+const importantDates = [new Date(), '2030-10-10']; // when we hover over `importantDates`, we will see the following: const importantDates: (string | Date)[].
+
+// But we should not let TS infer the types because if we initialize the array with only the Date object, TS will infer it as of type 'Date[]'
+const importantDates2 = [new Date()]; // TS infers `importantDates2` as of type 'Date[]'.
+
+// Therefore, we should always be specific with the annotations.
+const importantDates3: (string | Date)[] = [new Date()];
+importantDates.push('2030-10-10');
+importantDates.push(new Date());
+// importantDates.push(100); // error: Argument of type 'number' is not assignable to parameter of type 'string | Date'.ts(2345)
