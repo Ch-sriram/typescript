@@ -76,3 +76,8 @@ Dependencies Used: **`npm i --save axios`**
 4. Syntax Around Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f64740f9d224b4e58348d2f1ac2514bf5c33f9fa)
 5. Functions in Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5c3f1b97fb69c6002f157a2266103948710325a0)
 6. Code Reuse with Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1dbc736180b4532c31f9ef3ed317831db757fa31)
+
+### VIII. Classes
+
+1. What are Classes? &mdash; **A `class` is a blueprint to create an object with some fields (values) and methods (functions) to represent an entity/thing/real-world-object**
+2. Classes in Action: [Commit Details]()
