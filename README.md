@@ -58,4 +58,4 @@ Dependencies Used: **`npm i --save axios`**
 
 ### V. Mastering Typed Arrays
 
-1. Arrays in Typescript: [Commit Details]()
+1. Arrays in Typescript: [Commit Details](https://github.com/Ch-sriram/typescript/commit/145dfa50818785654f170d5da50c15223307cd7c)
