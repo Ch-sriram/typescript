@@ -1,30 +1,63 @@
 /**
- * Let's define an object that represents a Honda Civic which 
- * is an old model of the car.
+ * We will create an interface that just lays down what kind 
+ * of data we can expect from some entity.
  */
-const oldCivic = { name: 'civic', year: 2000, broken: true, };
+interface Vehicle {
+  name: string;
+  year: number;
+  broken: boolean;
+};
+
+const oldCivic = {
+  name: 'civic',
+  year: 2000,
+  broken: true,
+};
 
 /**
- * Now, we will define a function that prints the information
- * of any vehicle object which conforms to `oldCivic` kind of
- * data.
+ * Now, instead of giving a long type annotation, we can simply
+ * replace it with the interface that we defined above as 
+ * 'Vehicle'
  */
-const printVehicle = (vehicle: { name: string; year: number; broken: boolean; }): void => {
+const printVehicle = (vehicle: Vehicle): void => {
   console.log(`Name: ${vehicle.name}`);
   console.log(`Year: ${vehicle.year}`);
   console.log(`Broken? ${vehicle.broken}`);
 };
 
-// Now we can pass in `oldCivic` object to printVehicle() method as shown below.
-printVehicle(oldCivic);
+printVehicle(oldCivic); // even though `oldCivic` is not annotated by 'Vehicle' interface, but TS knows that the data inside the `oldCivic` object conforms to the data types mentioned in the 'Vehicle' interface, and so, this line is legal.
+
+// HOW CAN WE CATCH ERRORS USING INTERFACES?
+const newCivic = {
+  name: 'civic',
+  year: 2009,
+  isBroken: true
+};
 
 /**
- * Although everything works fine, but the point here is, what 
- * if there are more vehicles like `oldCivic`? And what if we
- * always have to define the type annotation for every vehicle
- * parameter as seen above?
- * 
- * All of these can become tedious after a while, and so, we'll
- * see how to use interfaces next, to shorten type annotations
- * into very short statements that refer to a group of types.
+ * Now if we pass `newCivic` to the printVehicle() method, we
+ * will get an error from the TS compiler.
+ */
+// printVehicle(newCivic); // error
+
+/**
+ * The Error for (line 41) is the following:
+ * ----------------------------------------
+ * Argument of type '{ name: string; year: number; isBroken: boolean; }' is not assignable to parameter of type 'Vehicle'.
+ * Property 'broken' is missing in type '{ name: string; year: number; isBroken: boolean; }' but required in type 'Vehicle'.ts(2345)
+ */
+
+const newerCivic = {
+  name: 'civic',
+  year: 2015,
+  broken: 1
+};
+
+// printVehicle(newerCivic); // error
+
+/**
+ * The Error for (line 56) is the following:
+ * ----------------------------------------
+ * Argument of type '{ name: string; year: number; broken: number; }' is not assignable to parameter of type 'Vehicle'
+ * Types of property 'broken' are incompatible. Type 'number' is not assignable to type 'boolean'.ts(2345)
  */
