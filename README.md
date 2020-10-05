@@ -69,7 +69,7 @@ Dependencies Used: **`npm i --save axios`**
 
 ### VII. Miscellaneous Types (Lesser Usage)
 
-1. Working with `enum`s (`Enum`s are enumerated global constant identifiers that automatically start with 0): [Commit Details]()
+1. Working with `enum`s (`Enum`s are enumerated global constant identifiers that automatically start with 0): [Commit Details](https://github.com/Ch-sriram/typescript/commit/72709088573e77a3ea048747a0d1356fb90c0a9e)
 
 ### VIII. Interfaces ⭐⭐⭐
 
