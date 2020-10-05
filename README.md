@@ -67,7 +67,11 @@ Dependencies Used: **`npm i --save axios`**
 1. Tuples in Action && Intro to Type Aliasing: [Commit Details](https://github.com/Ch-sriram/typescript/commit/675145849b1c9278a6d4f797795bf42b145eb911)
 2. Why Tuples & Why Not Tuples? [Commit Details](https://github.com/Ch-sriram/typescript/commit/bf687d40ee674359d85a9f81703be68e7607e782)
 
-### VII. Interfaces ⭐⭐⭐
+### VII. Miscellaneous Types (Lesser Usage)
+
+1. Working with `enum`s (`Enum`s are enumerated global constant identifiers that automatically start with 0): [Commit Details]()
+
+### VIII. Interfaces ⭐⭐⭐
 
 1. What are Interfaces?
    - **`interface` creates a new type, describing the property names and value types of an object.**
@@ -77,7 +81,7 @@ Dependencies Used: **`npm i --save axios`**
 5. Functions in Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5c3f1b97fb69c6002f157a2266103948710325a0)
 6. Code Reuse with Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1dbc736180b4532c31f9ef3ed317831db757fa31)
 
-### VIII. Classes
+### IX. Classes
 
 1. What are Classes? &mdash; **A `class` is a blueprint to create an object with some fields (values) and methods (functions) to represent an entity/thing/real-world-object**
 2. Classes in Action: [Commit Details](https://github.com/Ch-sriram/typescript/commit/0f8f36c2a1d2577bf22432ecbe9efee96124e89d)
