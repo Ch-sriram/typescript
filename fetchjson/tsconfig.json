@@ -65,5 +65,14 @@
     /* Advanced Options */
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
-  }
+  },
+  "exclude": [
+    "analytics.ts", // analytics.ts won't be compiled now
+    "*.dev.ts", // all files that end with `.dev.ts` will not be compiled by tsc, but only in the pwd
+    "**/*.dev.ts", // any file that ends with `.dev.ts` will not be compiled by tsc, the files with that pattern can be in any sub-directory
+    "node_modules" // this is excluded by tsc, by default -- even if we don't have the "exclude" setting
+  ],
+  "include": [
+    "index.ts" // only `index.ts` will be compiled by tsc
+  ]
 }

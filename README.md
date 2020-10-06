@@ -21,17 +21,9 @@ This repository is created for my own reference/revision for the language Typesc
 
 ## Typescript Compiler Details (and its Configuration)
 
-The following are some details about the Typescript Compiler (`tsc`) which are extremely important to understand before moving ahead on learning about classes and interfaces.
-
-### Compiling TS files
-
-- Run Typescript files & generate the corresponding Javascript file using the command: **<code>tsc <em>file_name</em></code>**. 
-- Alternatively, we can generate the JS file using `tsc` command in watch mode to not compile the TS file into JS file manually &mdash; every time we make a change to the TS file, by using the following command: **<code>tsc <em>file_name</em> -w</code>**. <br> *NOTE: Instead of* `-w`*, we can also use* `--watch` *as an option to `tsc`*.
-
-### Compiling the Entire Project / Multiple Files
-
-- To compile all the TS files inside particular project at once, we have to configure a file known as **`tsconfig.json`** which can be generated using the command: **`tsc --init`**. To look into how a **`tsconfig.json`** file looks like, click **[here](./fetchjson/tsconfig.json)**.
-- Now, inside the directory, we can run the command: **`tsc`** (or **`tsc -w`**) to make sure that we compile all the TS files inside the project, to the corresponding JS files.
+1. Compiling Typescript Files
+2. Compiling the Entire Project / Multiple Files
+3. Including & Excluding Files
 
 ## Contents
 
