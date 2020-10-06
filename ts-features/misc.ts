@@ -1,61 +1,43 @@
 /**
- * Assume that `person` object has a 'role' property which is
- * a number, where each number is associated with an actual 
- * role, and so, something like the following:
+ * Literal Types are the types that are dependent on our core
+ * types, but they're a specific version of the core type.
+ * 
+ * Union type is a combination of 2 or more types a variable or
+ * const or a function can have.
  */
 
-// 0 => ADMIN; 1 => READ ONLY USER; 2 => AUTHOR
-const person = {
-  name: 'Ram',
-  age: 25,
-  hobbies: ['Gaming', 'Cooking', 'Sports'],
-  role: 1,
-};
+// LITERAL TYPE
+const age = 25; // `age` is now of literal type => when we hover on `age`, we'll see the following: const age: 25, which means `age` cannot be anything other than the number 25.
 
-// We have to make the check as follows:
-if (person.role === 1)
-  console.log('is read only user');
+const sex = 'female'; // hovering on `sex`, we'll see that it is of literal type "female" shown as: const sex: "female"
 
-// disadv: we have to remember the numbers for the `person.role` object. Imagine the codebase being of 1000 lines.
+// A more elaborate usage of Literal Types & Union Types
+type NumOrStr = number | string; // union type
+type asNumOrText = 'as-number' | 'as-text'; // union & literal type
+
+function combine(input1: NumOrStr, input2: NumOrStr, resultConversion: asNumOrText) {
+  let result: NumOrStr;
+  if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number')
+    result = +input1 + +input2;
+  else result = input1.toString() + input2.toString();
+  return result;
+}
+
+const combinedAges = combine(30, 26, 'as-number');
+console.log(combinedAges);
+
+const combinedStringAges = combine('30', '26', 'as-number');
+console.log(combinedStringAges);
+
+const combinedNames = combine('Max', 'Anna', 'as-text');
+console.log(combinedNames);
+
+// const combinedNames2 = combine('Ram', 'Roop', 'as-tex'); // error: Argument of type '"as-tex"' is not assignable to parameter of type 'asNumOrText'.ts(2345)
 
 /**
- * In order to rectify that, we can make use of constants as
- * follows:
+ * Output
+ * """"""
+ * 56
+ * 56
+ * MaxAnna
  */
-const ADMIN = 0, READ_ONLY = 1, AUTHOR = 2;
-const person2 = {
-  name: 'Ram',
-  age: 25,
-  hobbies: ['Gaming', 'Cooking', 'Sports'],
-  role: READ_ONLY, // (property) role: number
-};
-
-// adv of constants is that we can make use of them everywhere in our code
-if (person2.role === READ_ONLY)
-  console.log('is read only user');
-
-// disadv is that now, `person.role` is inferred by TS as a 'number', and so, we can store any kind of a number. Also, we have to define the constants and manage them.
-
-/**
- * Instead of using the 2 methods aforementioned, we can make 
- * use of constants. Which make our lives much easier, as now
- * we need not worry about the numbers we want to assign, or
- * we need not worry that TS will infer the particular object 
- * to be of some generic type, TS will now infer that 
- * particular object property to be of the enum type with that
- * exact type as shown below.
- */
-enum Role { ADMIN, READ_ONLY, AUTHOR }; // Behind the scenes: ADMIN = 0, READ_ONLY = 1 & AUTHOR = 2, are assigned by default
-const person3 = {
-  name: "Ram",
-  age: 25,
-  hobbies: ["Gaming", "Cooking", "Sports"],
-  role: Role.AUTHOR, // (property) role: Role
-};
-
-if (person3.role === Role.AUTHOR)
-  console.log('is author');
-
-// we can do the following with enums:
-enum Roles { ADMIN = 100, READ_ONLY, AUTHOR }; // READ_ONLY and AUTHOR are now assigned 101 & 102 respectively.
-enum Role_ { ADMIN = 500, READ_ONLY = 'READ_ONLY', AUTHOR = -12.5 }; // each identifier in the enum is different.
