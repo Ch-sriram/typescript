@@ -72,6 +72,7 @@ Dependencies Used: **`npm i --save axios`**
 1. Working with `enum`s: [Commit Details](https://github.com/Ch-sriram/typescript/commit/72709088573e77a3ea048747a0d1356fb90c0a9e)
    - **`Enums` are enumerated global constant identifiers that automatically start with 0**.
 2. Literal Types & Union Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/ed33212cbb8674896e9a3fd283f1d1b90d063735)
+3. The `unknown` type: [Commit Details]()
 
 ### VIII. Interfaces ⭐⭐⭐
 
