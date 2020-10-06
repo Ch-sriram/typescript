@@ -30,7 +30,7 @@ The following are some details about the Typescript Compiler (`tsc`) which are e
 
 ### Compiling the Entire Project / Multiple Files
 
-- To compile all the TS files inside particular project at once, we have to configure a file known as **`tsconfig.json`** which can be generated using the command: **`tsc --init`**. To look into how a **`tsconfig.json`** file looks like, click **[here](../typescript/fetchjson/tsconfig.json)**.
+- To compile all the TS files inside particular project at once, we have to configure a file known as **`tsconfig.json`** which can be generated using the command: **`tsc --init`**. To look into how a **`tsconfig.json`** file looks like, click **[here](./fetchjson/tsconfig.json)**.
 - Now, inside the directory, we can run the command: **`tsc`** (or **`tsc -w`**) to make sure that we compile all the TS files inside the project, to the corresponding JS files.
 
 ## Contents
