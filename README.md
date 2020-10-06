@@ -18,7 +18,15 @@ This repository is created for my own reference/revision for the language Typesc
 ## Useful Tools/Commands
 
 - **[Typescript Playground - Online Editor To Play Around With Typescript](https://www.typescriptlang.org/play)**
-- Run Typescript files & generate the corresponding Javascript file using **<code>tsc <em>file_name</em></code>**. Alternatively, we can generate the `tsc` command in watch mode to not compile the TS file into JS manually, every time we make a change to the TS file, by using the following command: **<code>tsc <em>file_name</em> -w</code>**. <br> *NOTE: Instead of* `-w`*, we can also use* `--watch` *as an option to `tsc`*
+
+## Typescript Compiler Details (and its Configuration)
+
+The following are some details about the Typescript Compiler (`tsc`) which are extremely important to understand before moving ahead on learning about classes and interfaces.
+
+### Compiling TS files
+
+- Run Typescript files & generate the corresponding Javascript file using the command: **<code>tsc <em>file_name</em></code>**. 
+- Alternatively, we can generate the JS file using `tsc` command in watch mode to not compile the TS file into JS file manually &mdash; every time we make a change to the TS file, by using the following command: **<code>tsc <em>file_name</em> -w</code>**. <br> *NOTE: Instead of* `-w`*, we can also use* `--watch` *as an option to `tsc`*.
 
 ## Contents
 
