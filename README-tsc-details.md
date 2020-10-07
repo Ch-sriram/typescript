@@ -56,7 +56,7 @@ When we compile the ***app.ts*** file using `tsc`, it compiles without any error
 
 The reason why `tsc` recognizes the DOM APIs is because the **`"lib"`** by default, when not specified, is assumed to have the following libraries:
 
-```json
+```js
 {
   "compilerOptions": {
     ...
