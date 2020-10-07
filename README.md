@@ -29,6 +29,7 @@ This repository is created for my own reference/revision for the language Typesc
 6. **[Working with Source Maps](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#working-with-source-maps)**
 7. **[`rootDir` and `outDir`](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#rootdir-and-outdir)**
 8. **[Emitting Options](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#emitting-options)**
+9. **[`strict` Option](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#strict-option)**
 
 ## Contents
 

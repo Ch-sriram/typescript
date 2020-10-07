@@ -112,3 +112,16 @@ To tell `tsc` about which directory to look into to get the TS files, we use the
 
 - If we don't want to generate JS files after compiling the TS files using the `tsc` command, we would set **`"noEmit"`** option inside the `"compilerOptions"` to **true**.
 - If we specifically don't want to emit/generate the JS file(s) due to compilation error(s) in the TS file(s), we set the **`"noEmitOnError"`** to **true**. Because of this, if there are any compilation errors, `tsc` won't generate/emit the JS files, which is a recommended option.
+
+## `strict` Option
+
+- If we set the **`"strict"`** option in `"compilerOptions"` to **true**, we automatically set the following options as **true**:
+  - **`noImplicitAny`**
+  - **`strictNullChecks`**
+  - **`strictFunctionTypes`**
+  - **`strictBindCallApply`**
+  - **`strictPropertyInitialization`**
+  - **`noImplicitThis`**
+  - **`alwaysStrict`**
+
+We can always set `"strict"` option to false, but then we would be losing the advantages of Typescript. A better way to use the `"strict"` option depends on the requirements of the project &mdash; how much type strictness is needed? if not, then we can only set some of the options related to strictness to true.
