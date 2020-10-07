@@ -28,6 +28,7 @@ This repository is created for my own reference/revision for the language Typesc
 5. **[Understanding Typescript Core Libs](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#understanding-typescript-core-libs)**
 6. **[Working with Source Maps](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#working-with-source-maps)**
 7. [`rootDir` and `outDir`](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#rootdir-and-outdir)
+8. [Emitting Options](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#emitting-options)
 
 ## Contents
 

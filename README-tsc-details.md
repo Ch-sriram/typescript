@@ -107,3 +107,8 @@ To get rid of this behaviour, we can use the option **`"outDir"`** option in the
 **NOTE**: The generated JS files are always generated in the `dist` directory depending on the directory structure of wherever the TS files are located at.
 
 To tell `tsc` about which directory to look into to get the TS files, we use the **`"rootDir"`** option inside the `"compilerOptions"` option, which we generally set to **"./src"**. Now the `tsc` will only compile the TS files available inside the `"rootDir"` directory. Note that the directory structure maintained inside the path mentioned for the `"rootDir"` (in this case `src`) will be maintained for compiling the TS files into JS files by `tsc`.
+
+## Emitting Options
+
+- If we don't want to generate JS files after compiling the TS files using the `tsc` command, we would set **`"noEmit"`** option inside the `"compilerOptions"` to **true**.
+- If we specifically don't want to emit/generate the JS file(s) due to compilation error(s) in the TS file(s), we set the **`"noEmitOnError"`** to **true**. Because of this, if there are any compilation errors, `tsc` won't generate/emit the JS files, which is a recommended option.
