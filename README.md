@@ -21,21 +21,21 @@ This repository is created for my own reference/revision for the language Typesc
 
 ## Typescript Compiler Details (and its Configuration)
 
-Help from Official Docs
+- Help from Official Docs
+  - **[What is `tsconfig.json`?](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)**
+  - **[`tsc`CLI options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)**
+  - **[TSConfig Reference Manual](https://www.typescriptlang.org/tsconfig)**
 
-- **[What is `tsconfig.json`?](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)**
-- **[`tsc`CLI options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)**
-- **[TSConfig Reference Manual](https://www.typescriptlang.org/tsconfig)**
-
-1. **[Compiling Typescript Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#compiling-typescript-files)**
-2. **[Compiling the Entire Project / Multiple Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#compiling-the-entire-project--multiple-files)**
-3. **[Including & Excluding Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#including--excluding-files)**
-4. **[Setting a Compilation Target](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#setting-a-compilation-target)**
-5. **[Understanding Typescript Core Libs](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#understanding-typescript-core-libs)**
-6. **[Working with Source Maps](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#working-with-source-maps)**
-7. **[`rootDir` and `outDir`](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#rootdir-and-outdir)**
-8. **[Emitting Options](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#emitting-options)**
-9. **[`strict` Option](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#strict-option)**
+- Additional Details on Important Options in TSConfig
+  1. **[Compiling Typescript Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#compiling-typescript-files)**
+  2. **[Compiling the Entire Project / Multiple Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#compiling-the-entire-project--multiple-files)**
+  3. **[Including & Excluding Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#including--excluding-files)**
+  4. **[Setting a Compilation Target](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#setting-a-compilation-target)**
+  5. **[Understanding Typescript Core Libs](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#understanding-typescript-core-libs)**
+  6. **[Working with Source Maps](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#working-with-source-maps)**
+  7. **[`rootDir` and `outDir`](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#rootdir-and-outdir)**
+  8. **[Emitting Options](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#emitting-options)**
+  9. **[`strict` Option](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#strict-option)**
 
 ## Contents
 
