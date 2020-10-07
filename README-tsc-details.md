@@ -76,3 +76,34 @@ The reason why `tsc` recognizes the DOM APIs is because the **`"lib"`** by defau
 ## Working with Source Maps
 
 - In the `"compilerOptions"` option, we can add an option known as **`"sourceMap"`** which is a boolean value (true/false). If we set it to true, `tsc` generates a file with the ***.map*** extension, which helps the developers to debug/view the code in its original form via browser/debugger (in Chrome, we have the **Sources** tab in the developer tools. If we don't have `sourceMap` set to true, we won't be able to see the typescript code for the component on the browser, we would only be able to browse the javascript code). The source map (the *.map* file) acts as a bridge to connect the JS files to the input files (which are the typescript files).
+
+## `"rootDir"` and `"outDir"`
+
+In a typical TS project, we have the following file structure.
+
+```any
+--dist
+--src
+    |-app.ts
+ -index.html
+ -package.json
+ -tsconfig.json
+```
+
+In the directory structure above, whenever we run `tsc` command, the typescript compiler generates the JS files in the same directory wherever the TS files are.
+
+To get rid of this behaviour, we can use the option **`"outDir"`** option in the `"compilerOptions"` option, and set it to **"./dist"**, so that now, the `tsc` compiled JS files will be generated inside the `dist` directory, and so, we'll see the following directory structure:
+
+```any
+--dist
+    |-app.js
+--src
+    |-app.ts
+ -index.html
+ -package.json
+ -tsconfig.json
+```
+
+**NOTE**: The generated JS files are always generated in the `dist` directory depending on the directory structure of wherever the TS files are located at.
+
+To tell `tsc` about which directory to look into to get the TS files, we use the **`"rootDir"`** option inside the `"compilerOptions"` option, which we generally set to **"./src"**. Now the `tsc` will only compile the TS files available inside the `"rootDir"` directory. Note that the directory structure maintained inside the path mentioned for the `"rootDir"` (in this case `src`) will be maintained for compiling the TS files into JS files by `tsc`.
