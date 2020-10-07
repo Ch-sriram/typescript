@@ -24,6 +24,7 @@ This repository is created for my own reference/revision for the language Typesc
 1. **[Compiling Typescript Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#compiling-typescript-files)**
 2. **[Compiling the Entire Project / Multiple Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#compiling-the-entire-project--multiple-files)**
 3. **[Including & Excluding Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#including--excluding-files)**
+4. **[Setting a Compilation Target](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#setting-a-compilation-target)**
 
 ## Contents
 
