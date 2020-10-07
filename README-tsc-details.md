@@ -23,3 +23,52 @@ The following are some details about the Typescript Compiler (`tsc`) which are e
 ## Setting a Compilation Target
 
 - In **`"compilerOptions"`** we have setting/rules related to how the typescript file is going to be compiled. Inside `"compilerOptions"`, we have a `"target"` rule that specifies to which version of ECMAScript standard, is/are the TS file(s) supposed to be compiled to (as `tsc` compiles the TS file and generates a JS file). By default, if `"target"` is not defined in the `compilerOptions` &mdash; the value will be "es3".
+
+## Understanding Typescript Core `"lib"`s
+
+**`"lib"`** is an option in the `"compilerOptions"` that allows the developer to specify which default objects and features TS knows. For example: The Document Object Model (DOM) &mdash; If we have the following files ***index.html*** and ***app.ts*** seen below:
+
+***index.html***
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Understanding Typescript</title>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <button>Click Me</button>
+</body>
+</html>
+```
+
+***app.ts***
+
+```ts
+const button = document.querySelector('button')!; // ! before semi-colon is used to tell TS that `button` won't be null, and we'll definitely get a value
+button.addEventListener('click', () => {
+  console.log("Clicked!);
+});
+```
+
+When we compile the ***app.ts*** file using `tsc`, it compiles without any errors. But shouldn't `tsc` stop the compilation mid-way and raise the error on how we can use the APIs from DOM? How does `tsc` know that we have the DOM APIs included and some other APIs included by default?
+
+The reason why `tsc` recognizes the DOM APIs is because the **`"lib"`** by default, when not specified, is assumed to have the following libraries:
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "lib": [
+      "dom", // tsc can now understand all DOM APIs
+      "es6", // tsc can now understand all ES6 APIs
+      "dom.iterable",
+      "scripthost"
+    ],
+    ...
+  }
+}
+```
+
+**NOTE**: If we don't mention the **`"lib"`** option, by default it will take the aforementioned options.
