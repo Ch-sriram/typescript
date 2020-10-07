@@ -72,3 +72,7 @@ The reason why `tsc` recognizes the DOM APIs is because the **`"lib"`** by defau
 ```
 
 **NOTE**: If we don't mention the **`"lib"`** option, by default it will take the aforementioned options.
+
+## Working with Source Maps
+
+- In the `"compilerOptions"` option, we can add an option known as **`"sourceMap"`** which is a boolean value (true/false). If we set it to true, `tsc` generates a file with the ***.map*** extension, which helps the developers to debug/view the code in its original form via browser/debugger (in Chrome, we have the **Sources** tab in the developer tools. If we don't have `sourceMap` set to true, we won't be able to see the typescript code for the component on the browser, we would only be able to browse the javascript code). The source map (the *.map* file) acts as a bridge to connect the JS files to the input files (which are the typescript files).

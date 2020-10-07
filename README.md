@@ -26,6 +26,7 @@ This repository is created for my own reference/revision for the language Typesc
 3. **[Including & Excluding Files](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#including--excluding-files)**
 4. **[Setting a Compilation Target](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#setting-a-compilation-target)**
 5. **[Understanding Typescript Core Libs](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#understanding-typescript-core-libs)**
+6. **[Working with Source Maps](https://github.com/Ch-sriram/typescript/blob/dev/README-tsc-details.md#working-with-source-maps)**
 
 ## Contents
 
