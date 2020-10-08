@@ -1,11 +1,12 @@
 "use strict";
 var Department = (function () {
-    function Department(name) {
+    function Department(id, name) {
         this.employees = [];
+        this.id = id;
         this.name = name;
     }
     Department.prototype.describe = function () {
-        console.log('Department: ' + this.name);
+        console.log("Department (" + this.id + "): " + this.name);
     };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
@@ -17,10 +18,9 @@ var Department = (function () {
     return Department;
 }());
 ;
-var accounting = new Department('Accounting');
+var accounting = new Department('D1', 'Accounting');
 accounting.describe();
 accounting.addEmployee('Ram');
 accounting.addEmployee('Max');
-accounting.name = 'MARKETING';
 accounting.printEmployeeInformation();
 //# sourceMappingURL=app.js.map
