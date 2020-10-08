@@ -21,6 +21,6 @@ var accounting = new Department('Accounting');
 accounting.describe();
 accounting.addEmployee('Ram');
 accounting.addEmployee('Max');
-accounting.employees[2] = 'Roop';
+accounting.name = 'MARKETING';
 accounting.printEmployeeInformation();
 //# sourceMappingURL=app.js.map
