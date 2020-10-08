@@ -5,15 +5,16 @@
  */
 
 class Department {
-  // As the properties increase, we need to also do more work in initializing the constructor
-  private id: string;
-  private name: string;
+  // we need not write all this jargon below here
+  // private id: string;
+  // private name: string;
   private employees: string[] = [];
 
-  // if there are a lot of properties above, we need to write more code inside the constructor to just initialize the properties
-  constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
+  // By using the constructor parameters itself, we can define and initialize the properties in the constructor's params itself.
+  constructor(private id: string, public name: string) {
+    // we don't need to even separately assign which we did below 
+    // this.id = id;
+    // this.name = name;
   }
 
   // adding a method in the class
@@ -37,12 +38,6 @@ accounting.describe();
 accounting.addEmployee('Ram');
 accounting.addEmployee('Max');
 accounting.printEmployeeInformation();
-
-/**
- * We can use the shorthand initialization which we will see 
- * next, so that we can get rid of those extra lines in the 
- * constructor function.
- */
 
 /**
  * Output
