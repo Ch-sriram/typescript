@@ -11,6 +11,6 @@ var Department = (function () {
 ;
 var accounting = new Department('Accounting');
 accounting.describe();
-var accountingCopy = { describe: accounting.describe };
+var accountingCopy = { name: 'TEST', describe: accounting.describe };
 accountingCopy.describe();
 //# sourceMappingURL=app.js.map

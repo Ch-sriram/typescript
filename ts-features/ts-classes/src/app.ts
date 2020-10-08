@@ -13,7 +13,7 @@ class Department {
   }
 
   // adding a method in the class
-  describe(): void {
+  describe(this: Department): void {
     // console.log('Department: ' + name); // 'Department: undefined' --- since we are trying to access `window.name`
     console.log('Department: ' + this.name); // 'Department: Accounting'
   }
@@ -23,27 +23,28 @@ class Department {
 const accounting = new Department('Accounting');
 accounting.describe();
 
-/**
- * The `this` keyword can be tricky to understand, and so, if
- * we want to, we can make a copy of the `describe()` method 
- * inside the Department class using another object as follows
- */
-const accountingCopy = { describe: accounting.describe };
-accountingCopy.describe(); // 'Department: undefined' --- because accountingCopy has no `name` property
+// const accountingCopy = { describe: accounting.describe };
+// accountingCopy.describe(); // error: The 'this' context of type '{ describe: (this: Department) => void; }' is not assignable to method's 'this' of type 'Department'.
+// Property 'name' is missing in type '{ describe: (this: Department) => void; }' but required in type 'Department'.ts(2684)
 
 /**
- * The `this` has not been enforced to check for what object 
- * is calling the `describe()` method, and so, we can basically
- * call describe() from `accountingCopy` object too. 
- * 
- * To avoid this, we have to pass in the `this` object for the
- * describe() method with a type annotation of 'Department',
- * which we'll see next.
+ * To make sure that we can use `accountingCopy`, we've to 
+ * define the 'name' property inside the `accountingCopy` 
+ * object, as shown below.
+ */
+
+const accountingCopy = { name: 'TEST', describe: accounting.describe };
+accountingCopy.describe(); // no error: as now, `accountingCopy` object conforms to the 'Department' type.
+
+/**
+ * What we basically did is that, whenever we want to execute
+ * the describe() method, the `this` should always be of 
+ * 'Department' type, otherwise, tsc will raise an error.
  */
 
 /**
  * Output
  * ------
  * Department: Accounting
- * Department: undefined
+ * Department: TEST
  */
