@@ -108,3 +108,4 @@ Dependencies Used: **`npm i --save axios`**
 2. Classes in Action: [Commit Details](https://github.com/Ch-sriram/typescript/commit/0f8f36c2a1d2577bf22432ecbe9efee96124e89d)
 3. Class with `constructor()`: [Commit Details](https://github.com/Ch-sriram/typescript/commit/55c13f596b469df25ab4dab9cd955f012bbe6aee)
 4. `constructor()` function and the `this` keyword: [Commit #1](https://github.com/Ch-sriram/typescript/commit/7a1a91024a9a7ebcd608d9670c0f34cb7bd59138) & [Commit #2](https://github.com/Ch-sriram/typescript/commit/470ce9b76d1aa4e7e270123101612bb91fe07978)
+5. `private` & `public` Access Modifiers: [Commit #1]()

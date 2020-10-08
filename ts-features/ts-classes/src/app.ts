@@ -6,45 +6,70 @@
 
 class Department {
   name: string; // property definition in class using ESNext syntax
+  employees: string[] = [];
 
-  // special function called when the instance of Department is created, aka constructor() function
   constructor(name: string) {
     this.name = name;
   }
 
   // adding a method in the class
   describe(this: Department): void {
-    // console.log('Department: ' + name); // 'Department: undefined' --- since we are trying to access `window.name`
-    console.log('Department: ' + this.name); // 'Department: Accounting'
+    console.log('Department: ' + this.name);
+  }
+
+  addEmployee(employee: string): void {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInformation() {
+    console.log('Number of Employees: ' + this.employees.length);
+    console.log(this.employees);
   }
 };
 
 // creating an instance of the Department class
 const accounting = new Department('Accounting');
 accounting.describe();
-
-// const accountingCopy = { describe: accounting.describe };
-// accountingCopy.describe(); // error: The 'this' context of type '{ describe: (this: Department) => void; }' is not assignable to method's 'this' of type 'Department'.
-// Property 'name' is missing in type '{ describe: (this: Department) => void; }' but required in type 'Department'.ts(2684)
+accounting.addEmployee('Ram');
+accounting.addEmployee('Max');
 
 /**
- * To make sure that we can use `accountingCopy`, we've to 
- * define the 'name' property inside the `accountingCopy` 
- * object, as shown below.
+ * The problem we have here is that we can change the 
+ * `employees[]` array directly from outside the class using
+ * an instance of the class as shown below:
  */
 
-const accountingCopy = { name: 'TEST', describe: accounting.describe };
-accountingCopy.describe(); // no error: as now, `accountingCopy` object conforms to the 'Department' type.
+accounting.employees[2] = 'Roop';
 
 /**
- * What we basically did is that, whenever we want to execute
- * the describe() method, the `this` should always be of 
- * 'Department' type, otherwise, tsc will raise an error.
+ * In general, we should not allow the access to properties/
+ * data of a class directly to the instance. We should only 
+ * allow the data change through a function or if we want to 
+ * be even stricter, we don't provide access to the property
+ * at all. 
+ * 
+ * In our case, `employees[]` array can be accessed directly 
+ * through its instance and can be changed at will. What if
+ * we try to add the employee to the `employees[]` array 
+ * without using the addEmployee() method?
+ *    It's NOT a good practice because, what if, inside the
+ * addEmployee() method --- we've some checks we make before
+ * actually adding the employee to the `employees[]` method?
+ * 
+ * If that's the case, then adding an employee without using 
+ * a function is really a bad thing for the system.
+ * 
+ * And so, we don't want to permit the access to the 
+ * `employees[]` array outside the class. And we can do that
+ * using the 'private' keyword, which we'll see next.
  */
+
+accounting.printEmployeeInformation();
 
 /**
  * Output
  * ------
  * Department: Accounting
- * Department: TEST
+ * Number of Employees: 2
+ * ["Ram", "Max", "Roop"]
  */
