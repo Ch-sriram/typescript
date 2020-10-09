@@ -112,4 +112,4 @@ Dependencies Used: **`npm i --save axios`**
 6. Shorthand Initialization of Properties in a `class`: [Commit #1](https://github.com/Ch-sriram/typescript/commit/e02a60b0dad04249857820c427eb34bcb4411545) & [Commit #2](https://github.com/Ch-sriram/typescript/commit/e49a66d3620504fe160b1880fafa6acf4703f27f)
 7. `readonly` Properties: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a676959ae4de30af04ccea5345af145de05c76b5)
 8. Inheritance: [Commit Details](https://github.com/Ch-sriram/typescript/commit/406aa335f69d220f03a89d79eee3c391b82af4a5)
-9. Overriding Properties & The `protected` Access Modifier: [Commit Details]()
+9. Overriding Properties & The `protected` Access Modifier: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f8aae4c10e9131cdc37a6f1a1e08550d87e69985)
