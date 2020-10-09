@@ -5,17 +5,21 @@
  */
 
 class Department {
-  // we need not write all this jargon below here
-  // private id: string;
+  // private readonly id: string;
   // private name: string;
   private employees: string[] = [];
 
-  // By using the constructor parameters itself, we can define and initialize the properties in the constructor's params itself.
-  constructor(private id: string, public name: string) {
-    // we don't need to even separately assign which we did below 
-    // this.id = id;
-    // this.name = name;
-  }
+  /**
+   * If we don't want the user to change a particular property
+   * after it is initialized, in that case, what we do is, we
+   * change that property's access to 'readonly' using the
+   * `readonly` keyword. This keyword only works with TS (just
+   * like `private` & `public`)
+   */
+  // shorthand define & initialize the properties
+  constructor(private readonly id: string, public name: string) { }
+  
+  // if we now try to change the `id` value, we will get an error from TS
 
   // adding a method in the class
   describe(this: Department): void {
@@ -23,6 +27,7 @@ class Department {
   }
 
   addEmployee(employee: string): void {
+    // this.id = 'D2'; // Cannot assign to 'id' because it is a read-only property.ts(2540)
     this.employees.push(employee);
   }
 
