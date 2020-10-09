@@ -5,7 +5,14 @@
  */
 
 class Department {
-  private employees: string[] = [];
+  /**
+   * if `employee` property of 'Department' class is private, 
+   * then we cannot access it from anywhere else except from 
+   * inside the 'Department' class itself. But if we make the 
+   * `employees` property as protected, we can access 
+   * `employees` from any subclass of the 'Department' class.
+   */
+  protected employees: string[] = [];
   
   constructor(private readonly id: string, public name: string) { }
   
@@ -23,28 +30,13 @@ class Department {
   }
 };
 
-/**
- * We can extend the 'Department' class and make a new subclass
- * named 'ITDepartment' which inherits properties and methods
- * from the 'Department' class, but now, 'ITDepartment' has its
- * own methods/properties as follows:
- */
-
 class ITDepartment_ extends Department {}
 
-// creating an instance of the ITDepartment_ class
-const it_ = new ITDepartment_('D1', 'it_'); // uses the super class' constructor to instantiate the instance for 'ITDepartment_' object.
+const it_ = new ITDepartment_('D1', 'it_');
 it_.describe();
 it_.addEmployee('Ram');
 it_.addEmployee('Max');
 it_.printEmployeeInformation();
-
-/**
- * Inside the 'ITDepartment' class, we can add our own 
- * constructor, but that constructor should call base/super 
- * class' constructor using the super() keyword and pass in 
- * all the required parameters.
- */
 
 class ITDepartment extends Department {
   constructor(id: string, public admins: string[] = []) {
@@ -60,13 +52,15 @@ it.addEmployee('Max');
 it.printEmployeeInformation();
 console.log(it);
 
-/**
- * We can now also create a separate department for Accounting
- * as shown below.
- */
 class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[] = []) {
     super(id, 'Accounting');
+  }
+
+  // overriding addEmployee
+  addEmployee(employee: string): void {
+    if (name === 'Max') return;
+    this.employees.push(employee); // if the `employees` was a private property, we couldn't have been able to access it in the 'AccountingDepartment' class.
   }
 
   addReport(text: string) {
@@ -83,6 +77,10 @@ accounting.addReport('Something went wrong!!');
 accounting.addReport('Error rectified.');
 accounting.printReports();
 
+accounting.addEmployee('Max'); // will not be added
+accounting.addEmployee('Ram'); // will be added
+accounting.printEmployeeInformation();
+
 
 /**
  * Output
@@ -98,5 +96,7 @@ accounting.printReports();
  *    > employees: ["Ram", "Max"]
  *    id: "D2"
  *    name: "IT"
- * > ["Something wen wrong!!", "Error rectified."]
+ * > ["Something went wrong!!", "Error rectified."]
+ * Number of Employees: 2
+ * > ["Max", "Ram"]
  */

@@ -67,6 +67,11 @@ var AccountingDepartment = (function (_super) {
         _this.reports = reports;
         return _this;
     }
+    AccountingDepartment.prototype.addEmployee = function (employee) {
+        if (name === 'Max')
+            return;
+        this.employees.push(employee);
+    };
     AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
     };
@@ -79,4 +84,7 @@ var accounting = new AccountingDepartment('D3');
 accounting.addReport('Something went wrong!!');
 accounting.addReport('Error rectified.');
 accounting.printReports();
+accounting.addEmployee('Max');
+accounting.addEmployee('Ram');
+accounting.printEmployeeInformation();
 //# sourceMappingURL=app.js.map
