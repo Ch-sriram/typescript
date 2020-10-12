@@ -65,8 +65,23 @@ var AccountingDepartment = (function (_super) {
         if (reports === void 0) { reports = []; }
         var _this = _super.call(this, id, 'Accounting') || this;
         _this.reports = reports;
+        _this.lastReport = reports[0];
         return _this;
     }
+    Object.defineProperty(AccountingDepartment.prototype, "mostRecentReport", {
+        get: function () {
+            if (!this.lastReport)
+                throw new Error('No report found');
+            return this.lastReport;
+        },
+        set: function (value) {
+            if (!value)
+                throw new Error('Please pass in a valid value');
+            this.addReport(value);
+        },
+        enumerable: false,
+        configurable: true
+    });
     AccountingDepartment.prototype.addEmployee = function (employee) {
         if (name === 'Max')
             return;
@@ -74,6 +89,7 @@ var AccountingDepartment = (function (_super) {
     };
     AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
+        this.lastReport = text;
     };
     AccountingDepartment.prototype.printReports = function () {
         console.log(this.reports);
@@ -83,6 +99,8 @@ var AccountingDepartment = (function (_super) {
 var accounting = new AccountingDepartment('D3');
 accounting.addReport('Something went wrong!!');
 accounting.addReport('Error rectified.');
+accounting.mostRecentReport = 'Year End Report';
+console.log(accounting.mostRecentReport);
 accounting.printReports();
 accounting.addEmployee('Max');
 accounting.addEmployee('Ram');
