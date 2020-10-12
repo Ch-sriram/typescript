@@ -17,7 +17,11 @@ var Department = (function () {
         this.id = id;
         this.name = name;
         this.employees = [];
+        console.log(Department.fiscalYear);
     }
+    Department.createEmployee = function (name) {
+        return { name: name };
+    };
     Department.prototype.describe = function () {
         console.log("Department (" + this.id + "): " + this.name);
     };
@@ -28,9 +32,12 @@ var Department = (function () {
         console.log('Number of Employees: ' + this.employees.length);
         console.log(this.employees);
     };
+    Department.fiscalYear = 2020;
     return Department;
 }());
 ;
+var employee1 = Department.createEmployee('Roop');
+console.log(employee1, Department.fiscalYear);
 var ITDepartment_ = (function (_super) {
     __extends(ITDepartment_, _super);
     function ITDepartment_() {

@@ -114,3 +114,4 @@ Dependencies Used: **`npm i --save axios`**
 8. Inheritance: [Commit Details](https://github.com/Ch-sriram/typescript/commit/406aa335f69d220f03a89d79eee3c391b82af4a5)
 9. Overriding Properties & The `protected` Access Modifier: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f8aae4c10e9131cdc37a6f1a1e08550d87e69985)
 10. Getters & Setters using `get` & `set`: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a1e576d3e3a8c3ccfb69c1080d91c9dbdcdd2c21)
+11. `static` Methods & Properties: [Commit Details]()

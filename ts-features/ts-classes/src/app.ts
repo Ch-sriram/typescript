@@ -4,10 +4,45 @@
  * make a Department class.
  */
 
+/**
+ * Another feature related to properties and methods in a class
+ * (which also exists for TS & JS) are the static methods/
+ * properties -- which allow us to add properties/methods to 
+ * the class which need not be accessed by the instance of the
+ * class, but by accessing these properties/methods directly on
+ * the class.
+ * 
+ * static methods/properties are often used for utility 
+ * functions that we want to group or map to a class logically,
+ * or to a global constants which we also want to store in a 
+ * class.
+ * 
+ * Example static method/property built into JS is the 
+ * `Math.PI` static property and `MATH.pow()` static method 
+ * which can be accessed directly on the class itself, and so
+ * the class name acts more as a namespace, as a grouping 
+ * mechanism here (i.e, `Math` is the class name where we find
+ * PI, pow(), etc static properties/methods -- and so, `Math`
+ * is kind of a namespace/grouping-mechanism).
+ * 
+ * Let's say on the 'Department' class we want to add a static 
+ * method that helps us create employees. Not only methods, we
+ * can obviously create static properties as follows
+ */
+
 class Department {
+  static fiscalYear = 2020;
   protected employees: string[] = [];
   
-  constructor(private readonly id: string, public name: string) { }
+  constructor(private readonly id: string, public name: string) { 
+    // console.log(this.fiscalYear); // error: Property 'fiscalYear' is a static member of type 'Department'.ts(2576)
+    // we cannot access a static member from a non-static method using the instance of `this` particular class, but we can do so using the class' name, as we have done from Math.pow() or Math.PI
+    console.log(Department.fiscalYear);
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
+  }
   
   describe(this: Department): void {
     console.log(`Department (${this.id}): ${this.name}`);
@@ -22,6 +57,9 @@ class Department {
     console.log(this.employees);
   }
 };
+
+const employee1 = Department.createEmployee('Roop');
+console.log(employee1, Department.fiscalYear);
 
 class ITDepartment_ extends Department {}
 
@@ -46,12 +84,6 @@ it.printEmployeeInformation();
 console.log(it);
 
 class AccountingDepartment extends Department {
-  /**
-   * In TS (and JS), we have getters and setters that we can 
-   * implement using the get() and set() reserved methods in 
-   * a class as shown below.
-   */
-
   private lastReport: string;
 
   // getter using `get` method
@@ -89,16 +121,13 @@ class AccountingDepartment extends Department {
 }
 
 const accounting = new AccountingDepartment('D3');
-
-// getters are called as a property
-// console.log(accounting.mostRecentReport); // before adding a report, we get an error: No report found at AccountingDepartment...
 accounting.addReport('Something went wrong!!');
 accounting.addReport('Error rectified.');
 
-// we can access a setter also as a property as shown below
-// accounting.mostRecentReport = ''; // error: Please pass in a valid value
+// accessing setter as a property
 accounting.mostRecentReport = 'Year End Report';
 
+// accessing getter also as a property
 console.log(accounting.mostRecentReport); // after adding a report, we won't get any error
 
 accounting.printReports();
@@ -111,9 +140,12 @@ accounting.printEmployeeInformation();
 /**
  * Output
  * ------
+ * {name: "Roop"} 2020
+ * 2020
  * Department (D1): Accounting
  * Number of Employees: 2
  * > ["Ram", "Max"]
+ * 2020
  * Department (D2): IT
  * Number of Employees: 2
  * > ["Ram", "Max"]
@@ -122,6 +154,7 @@ accounting.printEmployeeInformation();
  *    > employees: ["Ram", "Max"]
  *    id: "D2"
  *    name: "IT"
+ * 2020
  * Year End Report
  * > ["Something went wrong!!", "Error rectified.", "Year End Report"]
  * Number of Employees: 2
