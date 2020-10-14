@@ -63,6 +63,12 @@ var AccountingDepartment = (function (_super) {
         _this.lastReport = reports[0];
         return _this;
     }
+    AccountingDepartment.getInstance = function () {
+        if (this.instance)
+            return this.instance;
+        this.instance = new AccountingDepartment('D2');
+        return this.instance;
+    };
     Object.defineProperty(AccountingDepartment.prototype, "mostRecentReport", {
         get: function () {
             if (!this.lastReport)
@@ -94,7 +100,9 @@ var AccountingDepartment = (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
-var accounting = new AccountingDepartment('D3');
+var accounting = AccountingDepartment.getInstance();
+var accounting2 = AccountingDepartment.getInstance();
+console.log(accounting === accounting2);
 accounting.addReport('Something went wrong!!');
 accounting.addReport('Error rectified.');
 accounting.mostRecentReport = 'Year End Report';

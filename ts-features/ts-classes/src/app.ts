@@ -4,7 +4,26 @@
  * make a Department class.
  */
 
-// once a class is abstract, we cannot have any instances of that particular class.
+/**
+ * There's a pattern in OOP which is called Singleton Pattern.
+ * The singleton pattern ensures that there's only a single
+ * instance available for the class, meaning, we might not
+ * be able to make many instances of a single class, we can 
+ * only make one instance of the class, and at the same time
+ * we make sure that we can create no other instances of that
+ * class.
+ * 
+ * To achieve this, we need to create a private constructor 
+ * because of which, we can create the instance of the class
+ * only from inside the class. To give access to the created 
+ * instance, we can create a static method which returns the 
+ * instance of the class, and that instance is also a static
+ * property which is also private.
+ * 
+ * We can make sure that all this happens, only for the 
+ * 'AccountingDepartment' class.
+ */
+
 abstract class Department {
   static fiscalYear = 2020;
   protected employees: string[] = [];
@@ -16,16 +35,6 @@ abstract class Department {
   static createEmployee(name: string) {
     return { name: name };
   }
-  
-  // overriding the methods defined below is optional, but to make sure that every child class that inherits 'Department'
-  // class needs to implement the describe() method, for that, we define our method as `abstract`, and for that to work, we 
-  // need to make our 'Department' class as `abstract`.
-
-  // we can call the following methods from any instance of the 'Department' class or any of its child class' instance.
-  // we can also override these methods in 'Department' class by the child classes that inherit 'Department' class
-  // describe(this: Department): void {
-  //   console.log(`Department (${this.id}): ${this.name}`);
-  // }
 
   addEmployee(employee: string): void {
     this.employees.push(employee);
@@ -63,6 +72,20 @@ console.log(it);
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
+  
+  // if we make this `private`, we can only call it from inside this class
+  private constructor(id: string, private reports: string[] = []) {
+    super(id, 'Accounting');
+    this.lastReport = reports[0];
+  }
+
+  // make a static method that returns the instance for 'AccountingDepartment'
+  static getInstance() {
+    if (this.instance) return this.instance; // return AccountingDepartment.instance
+    this.instance = new AccountingDepartment('D2');
+    return this.instance; // return AccountingDepartment.instance
+  }
 
   // getter using `get` method
   get mostRecentReport() {
@@ -75,11 +98,6 @@ class AccountingDepartment extends Department {
   set mostRecentReport(value: string) {
     if (!value) throw new Error('Please pass in a valid value');
     this.addReport(value);
-  }
-
-  constructor(id: string, private reports: string[] = []) {
-    super(id, 'Accounting');
-    this.lastReport = reports[0];
   }
 
   // overriding describe() method
@@ -103,7 +121,12 @@ class AccountingDepartment extends Department {
   }
 }
 
-const accounting = new AccountingDepartment('D3');
+// const accounting = new AccountingDepartment('D3'); // error: Constructor of class 'AccountingDepartment' is private and only accessible within the class declaration.ts(2673)
+
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
+console.log(accounting === accounting2); // true -- because 'AccountingDepartment' is a singleton class
+
 accounting.addReport('Something went wrong!!');
 accounting.addReport('Error rectified.');
 
@@ -136,9 +159,10 @@ accounting.describe();
  *    id: "D2"
  *    name: "IT"
  * 2020
+ * true
  * Year End Report
  * > ["Something went wrong!!", "Error rectified.", "Year End Report"]
  * Number of Employees: 2
  * > ["Max", "Ram"]
- * Accounting Department - ID: D3
+ * Accounting Department - ID: D2
  */
