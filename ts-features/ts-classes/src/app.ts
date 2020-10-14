@@ -4,39 +4,12 @@
  * make a Department class.
  */
 
-/**
- * Another feature related to properties and methods in a class
- * (which also exists for TS & JS) are the static methods/
- * properties -- which allow us to add properties/methods to 
- * the class which need not be accessed by the instance of the
- * class, but by accessing these properties/methods directly on
- * the class.
- * 
- * static methods/properties are often used for utility 
- * functions that we want to group or map to a class logically,
- * or to a global constants which we also want to store in a 
- * class.
- * 
- * Example static method/property built into JS is the 
- * `Math.PI` static property and `MATH.pow()` static method 
- * which can be accessed directly on the class itself, and so
- * the class name acts more as a namespace, as a grouping 
- * mechanism here (i.e, `Math` is the class name where we find
- * PI, pow(), etc static properties/methods -- and so, `Math`
- * is kind of a namespace/grouping-mechanism).
- * 
- * Let's say on the 'Department' class we want to add a static 
- * method that helps us create employees. Not only methods, we
- * can obviously create static properties as follows
- */
-
-class Department {
+// once a class is abstract, we cannot have any instances of that particular class.
+abstract class Department {
   static fiscalYear = 2020;
   protected employees: string[] = [];
   
-  constructor(private readonly id: string, public name: string) { 
-    // console.log(this.fiscalYear); // error: Property 'fiscalYear' is a static member of type 'Department'.ts(2576)
-    // we cannot access a static member from a non-static method using the instance of `this` particular class, but we can do so using the class' name, as we have done from Math.pow() or Math.PI
+  constructor(protected readonly id: string, public name: string) { 
     console.log(Department.fiscalYear);
   }
 
@@ -44,9 +17,15 @@ class Department {
     return { name: name };
   }
   
-  describe(this: Department): void {
-    console.log(`Department (${this.id}): ${this.name}`);
-  }
+  // overriding the methods defined below is optional, but to make sure that every child class that inherits 'Department'
+  // class needs to implement the describe() method, for that, we define our method as `abstract`, and for that to work, we 
+  // need to make our 'Department' class as `abstract`.
+
+  // we can call the following methods from any instance of the 'Department' class or any of its child class' instance.
+  // we can also override these methods in 'Department' class by the child classes that inherit 'Department' class
+  // describe(this: Department): void {
+  //   console.log(`Department (${this.id}): ${this.name}`);
+  // }
 
   addEmployee(employee: string): void {
     this.employees.push(employee);
@@ -56,26 +35,25 @@ class Department {
     console.log('Number of Employees: ' + this.employees.length);
     console.log(this.employees);
   }
+
+  // `abstract` methods don't have a body, they're just declaration(s)
+  abstract describe(this: Department): void;
 };
 
 const employee1 = Department.createEmployee('Roop');
 console.log(employee1, Department.fiscalYear);
 
-class ITDepartment_ extends Department {}
-
-const it_ = new ITDepartment_('D1', 'it_');
-it_.describe();
-it_.addEmployee('Ram');
-it_.addEmployee('Max');
-it_.printEmployeeInformation();
-
+// class below extends 'Department' -- and so, 'ITDepartment' has to define all the abstract methods/properties
 class ITDepartment extends Department {
   constructor(id: string, public admins: string[] = []) {
     super(id, 'IT'); // super() has to be called first in the child class' constructor before going ahead further
   }
+
+  describe(this: ITDepartment): void {
+    console.log('IT Department -- ID: ' + this.id);
+  }
 }
 
-// creating an instance of the ITDepartment_ class
 const it = new ITDepartment('D2', ['Max', 'Manu']);
 it.describe();
 it.addEmployee('Ram');
@@ -102,6 +80,11 @@ class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[] = []) {
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+
+  // overriding describe() method
+  describe() {
+    console.log('Accounting Department - ID: ' + this.id); // change `id` field to `protected` to be accessible by the child classes
   }
 
   // overriding addEmployee
@@ -136,17 +119,15 @@ accounting.addEmployee('Max'); // will not be added
 accounting.addEmployee('Ram'); // will be added
 accounting.printEmployeeInformation();
 
+accounting.describe();
+
 
 /**
  * Output
  * ------
  * {name: "Roop"} 2020
  * 2020
- * Department (D1): Accounting
- * Number of Employees: 2
- * > ["Ram", "Max"]
- * 2020
- * Department (D2): IT
+ * IT Department -- ID: D2
  * Number of Employees: 2
  * > ["Ram", "Max"]
  * > ITDepartment
@@ -159,4 +140,5 @@ accounting.printEmployeeInformation();
  * > ["Something went wrong!!", "Error rectified.", "Year End Report"]
  * Number of Employees: 2
  * > ["Max", "Ram"]
+ * Accounting Department - ID: D3
  */

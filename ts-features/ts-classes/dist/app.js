@@ -22,9 +22,6 @@ var Department = (function () {
     Department.createEmployee = function (name) {
         return { name: name };
     };
-    Department.prototype.describe = function () {
-        console.log("Department (" + this.id + "): " + this.name);
-    };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
     };
@@ -38,18 +35,6 @@ var Department = (function () {
 ;
 var employee1 = Department.createEmployee('Roop');
 console.log(employee1, Department.fiscalYear);
-var ITDepartment_ = (function (_super) {
-    __extends(ITDepartment_, _super);
-    function ITDepartment_() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ITDepartment_;
-}(Department));
-var it_ = new ITDepartment_('D1', 'it_');
-it_.describe();
-it_.addEmployee('Ram');
-it_.addEmployee('Max');
-it_.printEmployeeInformation();
 var ITDepartment = (function (_super) {
     __extends(ITDepartment, _super);
     function ITDepartment(id, admins) {
@@ -58,6 +43,9 @@ var ITDepartment = (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log('IT Department -- ID: ' + this.id);
+    };
     return ITDepartment;
 }(Department));
 var it = new ITDepartment('D2', ['Max', 'Manu']);
@@ -89,6 +77,9 @@ var AccountingDepartment = (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountingDepartment.prototype.describe = function () {
+        console.log('Accounting Department - ID: ' + this.id);
+    };
     AccountingDepartment.prototype.addEmployee = function (employee) {
         if (name === 'Max')
             return;
@@ -112,4 +103,5 @@ accounting.printReports();
 accounting.addEmployee('Max');
 accounting.addEmployee('Ram');
 accounting.printEmployeeInformation();
+accounting.describe();
 //# sourceMappingURL=app.js.map
