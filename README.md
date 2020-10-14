@@ -116,4 +116,4 @@ Dependencies Used: **`npm i --save axios`**
 10. Getters & Setters using `get` & `set`: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a1e576d3e3a8c3ccfb69c1080d91c9dbdcdd2c21)
 11. `static` Methods & Properties: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5fa0ba6196321a6feafc3210045fa1f7914c7888)
 12. `abstract` Classes: [Commit Details](https://github.com/Ch-sriram/typescript/commit/b1e1be48e66051dce2c3f0f19254cf42daad5494)
-13. Singletons & `private` constructors: [Commit Details]()
+13. Singleton Pattern & `private` constructors: [Commit Details](https://github.com/Ch-sriram/typescript/commit/20c289b1b34711ed1eb7cc8dbd545fcf4cae4a4c)
