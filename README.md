@@ -125,3 +125,4 @@ Dependencies Used: **`npm i --save axios`**
 
 1. Intersection Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/2dd696d740d3a8690f55bc63cafbfb36f06d186f)
 2. More on Type Guards: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1b07935ab9088d017fc0948f6767115bf91d938f)
+3. Discriminated Unions: [Commit Details]()
