@@ -99,7 +99,7 @@ Dependencies Used: **`npm i --save axios`**
 2. Long Type Annotations: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bafcb289621cda280e04be295ca7cfebf3e1c636)
 3. Fixing Long Annotations with `interface`s: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5f2439ce203aa06dfdcb9dc8bf3359e9f0dded29)
 4. Syntax Around Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f64740f9d224b4e58348d2f1ac2514bf5c33f9fa)
-5. `readonly` Interface Properties: [Commit Details]()
+5. `readonly` Interface Properties: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a40a07b38ab7cefd76ae06e421379e58477115fb)
 6. Functions in Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5c3f1b97fb69c6002f157a2266103948710325a0)
 7. Code Reuse with Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1dbc736180b4532c31f9ef3ed317831db757fa31)
 
