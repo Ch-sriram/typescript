@@ -16,7 +16,8 @@ console.log(addFunction(10, 20));
 
 // We can extend one interface to another interface as follows
 interface Named {
-  readonly name: string;
+  readonly name?: string; // even 'name' is optional now
+  outputName?: string; // this property is optional as it is having a '?' [Question Mark] symbol before ':'
 }
 
 interface Greetable extends Named {
@@ -28,10 +29,14 @@ interface Greetable extends Named {
 // interface B {/* some definitions */}
 // class C implements A, B {/* some definitions */}
 class Person implements Greetable {
-  // name: string; // adding because of the 'Greetable' interface
+  name?: string; // since 'name' is optional now
   age = 30; // this class' property (interface doesn't matter)
+  // outputName = '...' // this is an optional property
 
-  constructor(public name: string) {}
+  // if we don't add a '?' in params of th constructors, we might get an error when initiating an object of type 'Person'
+  constructor(name?: string) {
+    if (name) this.name = name;
+  }
   
   greet(phrase: string): void {
     console.log(phrase + ' ' + this.name);
@@ -46,6 +51,17 @@ user3 = new Person('Roop'); // this is valid, as 'Person' implements 'Greetable'
 user3.greet('Howdy! My name is');
 // user3.name = 'Ram'; // Cannot assign to 'name' because it is a read-only property.ts(2540)
 
+let user4: Greetable;
+user4 = new Person(); // since 'name' is optional, we need not send one
+user4.greet('Yo! What\'s up?');
+
+/**
+ * NOTE: The optional properties in Line #19, #32 & #37 are 
+ * totally unrelated, i.e., we can have an optional param in 
+ * line #19 and then have normal params in #32 and #37 or any
+ * of the combination we want.
+ */
+
 /**
  * Output
  * ------
@@ -53,4 +69,5 @@ user3.greet('Howdy! My name is');
  * 30
  * Hi there - I am Ram
  * Howdy! My name is Roop
+ * Yo! What's up? undefined
  */

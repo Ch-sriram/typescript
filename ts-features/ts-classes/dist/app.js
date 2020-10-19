@@ -7,8 +7,9 @@ addFunction = function (n1, n2) { return n1 + n2; };
 console.log(addFunction(10, 20));
 var Person = (function () {
     function Person(name) {
-        this.name = name;
         this.age = 30;
+        if (name)
+            this.name = name;
     }
     Person.prototype.greet = function (phrase) {
         console.log(phrase + ' ' + this.name);
@@ -21,4 +22,7 @@ user2.greet('Hi there - I am');
 var user3;
 user3 = new Person('Roop');
 user3.greet('Howdy! My name is');
+var user4;
+user4 = new Person();
+user4.greet('Yo! What\'s up?');
 //# sourceMappingURL=app.js.map
