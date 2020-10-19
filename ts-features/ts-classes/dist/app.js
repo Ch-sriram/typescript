@@ -1,14 +1,14 @@
 "use strict";
-var paragraph = document.querySelector('p');
-var para = document.getElementById('message-output');
-var userInputElement = document.getElementById('user-input');
-var userInputElement1 = document.getElementById('user-input');
-userInputElement1.value = 'Hi there!';
-var userInputElement2 = document.getElementById('user-input');
-userInputElement2.value = 'Hey Yo!';
-var userInputElement3 = document.getElementById('user-input');
-var userInputElement4 = document.getElementById('user-input');
-if (userInputElement4) {
-    userInputElement4.value = 'Hi there!';
-}
+var errorBag = {
+    email: 'Not a valid email',
+    userName: 'Must start with a capital character!',
+    1: 'This is 1 (one)',
+    $: 'This is $ (Dollar)',
+};
+var inputError = {
+    id: 'f5432',
+    name: 'name is invalid',
+    password: 'password is invalid',
+    isUser: 'no such user',
+};
 //# sourceMappingURL=app.js.map
