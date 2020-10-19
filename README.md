@@ -123,4 +123,4 @@ Dependencies Used: **`npm i --save axios`**
 
 ### IX. Advanced Typing Concepts ⭐⭐
 
-1. Intersection Types: [Commit Details]()
+1. Intersection Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/2dd696d740d3a8690f55bc63cafbfb36f06d186f)
