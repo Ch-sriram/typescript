@@ -1,23 +1,14 @@
 "use strict";
-function moveAnimal(animal) {
-    if ('flyingSpeed' in animal)
-        console.log('Moving with speed: ' + animal.flyingSpeed + ' km/h');
-    if ('runningSpeed' in animal)
-        console.log('Moving with speed: ' + animal.runningSpeed + ' km/h');
+var paragraph = document.querySelector('p');
+var para = document.getElementById('message-output');
+var userInputElement = document.getElementById('user-input');
+var userInputElement1 = document.getElementById('user-input');
+userInputElement1.value = 'Hi there!';
+var userInputElement2 = document.getElementById('user-input');
+userInputElement2.value = 'Hey Yo!';
+var userInputElement3 = document.getElementById('user-input');
+var userInputElement4 = document.getElementById('user-input');
+if (userInputElement4) {
+    userInputElement4.value = 'Hi there!';
 }
-function animalSpeed(animal) {
-    var speed;
-    switch (animal.type) {
-        case 'bird':
-            speed = animal.flyingSpeed;
-            break;
-        case 'horse':
-            speed = animal.runningSpeed;
-            break;
-        default: speed = 0;
-    }
-    console.log("Moving at speed: " + speed + " km/h");
-}
-animalSpeed({ type: 'bird', flyingSpeed: 20 });
-animalSpeed({ type: 'horse', runningSpeed: 50 });
 //# sourceMappingURL=app.js.map

@@ -1,80 +1,65 @@
-// DISCRIMINATED UNIONS
-// It is a special kind of a type guard which is a design 
-// pattern which we can use when working with union types, 
-// which makes implementing type guards for union types, easier
+// TYPE CASTING
+// Helps us tell TS that some value is of a specific type where
+// TS is unable ot detect the type of that respective value, on
+// its own, but we as the developer knows the type of the value
 
-interface Bird {
-  flyingSpeed: number;
-}
+// Ex.1 Getting access to something in DOM
+// Please check 'index.html' for the HTMLElements we are accessing here
 
-interface Horse {
-  runningSpeed: number;
-}
+// we can access the paragraph as follows:
+const paragraph = document.querySelector('p'); // hover over 'paragraph' and we see: const paragraph: HTMLParagraphElement | null
 
-type Animal = Bird | Horse;
+// Important thing in lin #10 is that, TS knows that the 
+// `paragraph`'s type is 'HTMLParagraphElement' because we 
+// selected `paragraph` using the tag itself ('p').
 
-function moveAnimal(animal: Animal) {
-  if ('flyingSpeed' in animal)
-    console.log('Moving with speed: ' + animal.flyingSpeed + ' km/h');
-  if ('runningSpeed' in animal)
-    console.log('Moving with speed: ' + animal.runningSpeed + ' km/h');
-}
+// but if we try and access an HTML element using its class or
+// id as shown below:
+const para = document.getElementById('message-output'); // hover on 'para' and TS infers: const para: HTMLElement | null
 
-/**
- * There are a lot of pitfalls of using type guards as defined
- * above, and they're:
- * 1. We can mistype either 'flyingSpeed' or 'runningSpeed' property names.
- * 2. More types we have in the union of Animal, more properties we have to check.
- * 3. We cannot use the `instanceof` keyword as we are working with interfaces (and interfaces are not compiled to JS).
- */
+// we can clearly see that TS is unable to infer that 'para' is
+// of type 'HTMLParagraphElement'. 
 
 /**
- * So, we can build a Discriminated Union here by giving every
- * interface an extra property -- conventionally known as 
- * 'kind' or 'type', which are literal types. Demo shown below.
+ * But for a <p> element, it doesn't matter much because with 
+ * a <p> element (or any other normal HTMLElement) we can do 
+ * the same things as we do with normal elements. And so, there
+ * are very little properties/methods that are specific to the
+ * <p> tag/element.
  */
 
-interface Bird {
-  type: 'bird'; // this is a literal type
-  flyingSpeed: number;
+// But what if we are using the <input /> element?
+// In the <input /> element, we have the 'value' property, 
+// which is not present in a normal 'HTMLElement', but only 
+// present in 'HTMLInputElement' type as shown below.
+const userInputElement = document.getElementById('user-input'); // TS infers this element as 'HTMLElement' and not as 'HTMLInputElement'
+// userInputElement.value = 'Hi there!'; // Property 'value' does not exist on type 'HTMLElement'.ts(2339)
+
+// And so, we have to explicitly tell TS that the element we are getting from the DOM is of 'HTMLInputElement' type explicitly in 2 ways:
+
+// 1. Using <> (angular bracket) syntax -- not supported when using React
+const userInputElement1 = <HTMLInputElement>document.getElementById('user-input');
+userInputElement1.value = 'Hi there!';
+
+// 2. Using the `as` keyword -- supported also when using React
+const userInputElement2 = document.getElementById('user-input') as HTMLInputElement;
+userInputElement2.value = 'Hey Yo!';
+
+// One more good practice is to use the '!' (exclamation mark)
+// symbol at the end of the statement before completing the
+// statement, to tell the TS compiler that there will be an
+// element for sure, and it won't be 'null'. Demo below.
+const userInputElement3 = document.getElementById('user-input')! as HTMLInputElement; // TS will infer that `userInputElement3` won't be 'null'
+
+// if we don't know whether the DOM element we are accessing
+// might or might not be 'null', in that case, we declare and
+// define it as shown below (without `!` symbol and using the
+// `if` statement to check whether the element is 'null' or not)
+const userInputElement4 = document.getElementById('user-input');
+if (userInputElement4) {
+  // userInputElement4.value = 'Hi there!'; // error: Property 'value' does not exist on type 'HTMLElement'.ts(2339)
+  // To properly type cast or inform TS about the type of the element, we need to write the following:
+  (userInputElement4 as HTMLInputElement).value = 'Hi there!';
+  
+  // userInputElement4 as HTMLInputElement.value = 'Hi there!'; // this won't work since invalid syntax
 }
-
-interface Horse {
-  type: 'horse';
-  runningSpeed: number;
-}
-
-type AnimalType = Bird | Horse;
-
-// now we can use a switch-case to check the 'type' of the 'animal' being passed as the type
-function animalSpeed(animal: AnimalType): void {
-  let speed: number;
-  switch (animal.type) {
-    // we will now get TS intellisense help to type in the types
-    case 'bird':
-      speed = animal.flyingSpeed;
-      break;
-    case 'horse':
-      speed = animal.runningSpeed;
-      break;
-    default: speed = 0;
-  }
-  console.log(`Moving at speed: ${speed} km/h`);
-}
-
-animalSpeed({ type: 'bird', flyingSpeed: 20 });
-animalSpeed({ type: 'horse', runningSpeed: 50 });
-
-/**
- * Now, 'AnimalType' is a discriminated union because 'Bird' &
- * 'Horse' interfaces have 1 common literal type property which
- * is the factor of discrimination/uniqueness between a 
- * particular type of 'AnimalType'.
- */
-
-/**
- * Output:
- * ======
- * Moving at speed: 20 km/h
- * Moving at speed: 50 km/h
- */
