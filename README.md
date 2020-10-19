@@ -118,4 +118,4 @@ Dependencies Used: **`npm i --save axios`**
 21. Functions in Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5c3f1b97fb69c6002f157a2266103948710325a0)
 22. Code Reuse with Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1dbc736180b4532c31f9ef3ed317831db757fa31)
 23. `interface`s as Function Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/faf4b342fb7f580b70f7694b10bad8a93ef188bf)
-24. Optional Parameters & Properties for an `interface`: [Commit Details]()
+24. Optional Parameters & Properties for an `interface`: [Commit Details](https://github.com/Ch-sriram/typescript/commit/8611bcaf0b4375d9c5e4ed7f369493e16c38486f)
