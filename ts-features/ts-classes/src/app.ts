@@ -24,7 +24,7 @@ user1.greet('Hello -- I am');
 
 // If we make a 'Greetable' and implement it for a class, then that class has to implement all the properties/functions of that interface
 interface Greetable {
-  name: string;
+  readonly name: string;
   greet(phrase: string): void;
 }
 
@@ -50,6 +50,7 @@ user2.greet('Hi there - I am');
 let user3: Greetable;
 user3 = new Person('Roop'); // this is valid, as 'Person' implements 'Greetable' interface
 user3.greet('Howdy! My name is');
+// user3.name = 'Ram'; // Cannot assign to 'name' because it is a read-only property.ts(2540)
 
 /**
  * Output
