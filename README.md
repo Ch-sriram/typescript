@@ -109,6 +109,7 @@ Dependencies Used: **`npm i --save axios`**
 13. Singleton Pattern & `private` constructors: [Commit Details](https://github.com/Ch-sriram/typescript/commit/20c289b1b34711ed1eb7cc8dbd545fcf4cae4a4c)
 14. What are Interfaces?
     - **`interface` creates a new type, describing the property names and value types of an object.**
+    - `interface`s is a pure TS feature and so, it is not available in JS. If we look into a JS file which is converted from a TS file (which had interface related code), we will see that none of the `interface`s are compiled to its respective JS version because `interface`s are native to TS, and not JS.
 15. Long Type Annotations: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bafcb289621cda280e04be295ca7cfebf3e1c636)
 16. Fixing Long Annotations with `interface`s: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5f2439ce203aa06dfdcb9dc8bf3359e9f0dded29)
 17. Syntax Around Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f64740f9d224b4e58348d2f1ac2514bf5c33f9fa)
