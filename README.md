@@ -92,18 +92,7 @@ Dependencies Used: **`npm i --save axios`**
 2. Literal Types & Union Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/ed33212cbb8674896e9a3fd283f1d1b90d063735)
 3. The `unknown` type: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1d58c3ad0309381eab128f2827e89de4153f074b)
 
-### VIII. Interfaces ⭐⭐⭐
-
-1. What are Interfaces?
-   - **`interface` creates a new type, describing the property names and value types of an object.**
-2. Long Type Annotations: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bafcb289621cda280e04be295ca7cfebf3e1c636)
-3. Fixing Long Annotations with `interface`s: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5f2439ce203aa06dfdcb9dc8bf3359e9f0dded29)
-4. Syntax Around Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f64740f9d224b4e58348d2f1ac2514bf5c33f9fa)
-5. `readonly` Interface Properties: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a40a07b38ab7cefd76ae06e421379e58477115fb)
-6. Functions in Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5c3f1b97fb69c6002f157a2266103948710325a0)
-7. Code Reuse with Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1dbc736180b4532c31f9ef3ed317831db757fa31)
-
-### IX. Classes
+### VIII. Classes & Interfaces ⭐⭐⭐
 
 1. What are Classes? &mdash; **A `class` is a blueprint to create an object with some fields (values) and methods (functions) to represent an entity/thing/real-world-object**
 2. Classes in Action: [Commit Details](https://github.com/Ch-sriram/typescript/commit/0f8f36c2a1d2577bf22432ecbe9efee96124e89d)
@@ -118,5 +107,14 @@ Dependencies Used: **`npm i --save axios`**
 11. `static` Methods & Properties: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5fa0ba6196321a6feafc3210045fa1f7914c7888)
 12. `abstract` Classes: [Commit Details](https://github.com/Ch-sriram/typescript/commit/b1e1be48e66051dce2c3f0f19254cf42daad5494)
 13. Singleton Pattern & `private` constructors: [Commit Details](https://github.com/Ch-sriram/typescript/commit/20c289b1b34711ed1eb7cc8dbd545fcf4cae4a4c)
-14. Using `interface`s with `class`es: [Commit Details](https://github.com/Ch-sriram/typescript/commit/e0a0e2ca1c4aa5f7ef3a693c4079db8477b87d8f)
-15. `extend`ing Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/cb78355d7490f8170d0c17e805fe97f7cabcfdbd)
+14. What are Interfaces?
+    - **`interface` creates a new type, describing the property names and value types of an object.**
+15. Long Type Annotations: [Commit Details](https://github.com/Ch-sriram/typescript/commit/bafcb289621cda280e04be295ca7cfebf3e1c636)
+16. Fixing Long Annotations with `interface`s: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5f2439ce203aa06dfdcb9dc8bf3359e9f0dded29)
+17. Syntax Around Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f64740f9d224b4e58348d2f1ac2514bf5c33f9fa)
+18. Using `interface`s with `class`es: [Commit Details](https://github.com/Ch-sriram/typescript/commit/e0a0e2ca1c4aa5f7ef3a693c4079db8477b87d8f)
+19. `readonly` Interface Properties: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a40a07b38ab7cefd76ae06e421379e58477115fb)
+20. `extend`ing Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/cb78355d7490f8170d0c17e805fe97f7cabcfdbd)
+21. Functions in Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/5c3f1b97fb69c6002f157a2266103948710325a0)
+22. Code Reuse with Interfaces: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1dbc736180b4532c31f9ef3ed317831db757fa31)
+23. `interface`s as Function Types: [Commit Details]()

@@ -1,4 +1,10 @@
 "use strict";
+var add;
+add = function (n1, n2) { return n1 + n2; };
+console.log(add(100, 200));
+var addFunction;
+addFunction = function (n1, n2) { return n1 + n2; };
+console.log(addFunction(10, 20));
 var Person = (function () {
     function Person(name) {
         this.name = name;

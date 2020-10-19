@@ -1,3 +1,19 @@
+// we can define type of a function as follows:
+type AddFn = (a: number, b: number) => number;
+let add: AddFn;
+add = (n1: number, n2: number) => n1 + n2;
+console.log(add(100, 200));
+
+// As an alternative to the custom type above, we can use interface as follows for the type of a function
+interface AddFunction {
+  (a: number, b: number): number; // an anonymous function that takes in a & b as numbers and returns a number
+}
+
+let addFunction: AddFunction;
+// addFunction = (n1: string, n2: number) => n1 + n2; // Type '(n1: string, n2: number) => string' is not assignable to type 'AddFunction'. Types of parameters 'n1' and 'a' are incompatible. Type 'number' is not assignable to type 'string'.ts(2322)
+addFunction = (n1: number, n2: number) => n1 + n2;  // no error
+console.log(addFunction(10, 20));
+
 // We can extend one interface to another interface as follows
 interface Named {
   readonly name: string;
@@ -33,6 +49,8 @@ user3.greet('Howdy! My name is');
 /**
  * Output
  * ------
+ * 300
+ * 30
  * Hi there - I am Ram
  * Howdy! My name is Roop
  */
