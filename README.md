@@ -119,3 +119,4 @@ Dependencies Used: **`npm i --save axios`**
 12. `abstract` Classes: [Commit Details](https://github.com/Ch-sriram/typescript/commit/b1e1be48e66051dce2c3f0f19254cf42daad5494)
 13. Singleton Pattern & `private` constructors: [Commit Details](https://github.com/Ch-sriram/typescript/commit/20c289b1b34711ed1eb7cc8dbd545fcf4cae4a4c)
 14. Using `interface`s with `class`es: [Commit Details](https://github.com/Ch-sriram/typescript/commit/e0a0e2ca1c4aa5f7ef3a693c4079db8477b87d8f)
+15. `extend`ing Interfaces: [Commit Details]()

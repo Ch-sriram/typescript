@@ -1,30 +1,9 @@
-/**
- * Interface can only be used to define an object whereas 
- * custom types (using `type` keyword) can also be used to 
- * defining arrays, union types, literal types, etc.
- */
-
-interface Person {
-  name: string;
-  age: number;
-  greet(phrase: string): void;
-};
-
-let user1: Person;
-
-user1 = {
-  name: 'Ram',
-  age: 30,
-  greet(phrase: string) {
-    console.log(phrase + ' ' + this.name);
-  },
-};
-
-user1.greet('Hello -- I am');
-
-// If we make a 'Greetable' and implement it for a class, then that class has to implement all the properties/functions of that interface
-interface Greetable {
+// We can extend one interface to another interface as follows
+interface Named {
   readonly name: string;
+}
+
+interface Greetable extends Named {
   greet(phrase: string): void;
 }
 
@@ -32,7 +11,6 @@ interface Greetable {
 // interface A {/* some definitions */}
 // interface B {/* some definitions */}
 // class C implements A, B {/* some definitions */}
-
 class Person implements Greetable {
   // name: string; // adding because of the 'Greetable' interface
   age = 30; // this class' property (interface doesn't matter)
@@ -55,7 +33,6 @@ user3.greet('Howdy! My name is');
 /**
  * Output
  * ------
- * Hello -- I am Ram
  * Hi there - I am Ram
  * Howdy! My name is Roop
  */

@@ -1,14 +1,4 @@
 "use strict";
-;
-var user1;
-user1 = {
-    name: 'Ram',
-    age: 30,
-    greet: function (phrase) {
-        console.log(phrase + ' ' + this.name);
-    },
-};
-user1.greet('Hello -- I am');
 var Person = (function () {
     function Person(name) {
         this.name = name;
