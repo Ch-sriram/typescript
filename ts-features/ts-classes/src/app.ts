@@ -39,3 +39,45 @@ console.log(res1.split(' '));
 
 const res2 = add(5, 1); // when we hover on 'res2', we'll see: `const res2: number` -- not Combinable, as TS automatically infers from the overloads we've above.
 console.log(res2);
+
+// OPTIONAL CHAINING
+/**
+ * Let's say we've an app where we get data from some source
+ * where we don't know with certainty, if in an object, certain
+ * property is defined or not.
+ * 
+ * If we are fetching the data and it's structure is the 
+ * following:
+ * fetchedData = {
+ *  id: string;
+ *  name: string;
+ *  job?: object; // `job` is an optional field that we get back from the backend
+ * }
+ */
+
+// now, if the data we are trying to fetch is the following:
+const fetchedUserData1 = {
+  id: 'u1',
+  name: 'Ram',
+  job: { title: 'SDE', description: 'Writes Code & Develops Apps' },
+};
+
+// knowing the structure above, if we write the following statement, we can get the data we require
+console.log(fetchedUserData1.job.title); // SDE
+
+// now, if the data we get has no `job` property
+const fetchedUserData2 = {
+  id: 'u2',
+  name: 'Roop',
+};
+
+// if we try to access the `job.title` field as we did in lin #66 as follows:
+// console.log(fetchedUserData2.job.title); // error: Property 'job' does not exist on type '{ id: string; name: string; }'.ts(2339)
+
+// therefore, in this case, we can put a guard in JS style as follows:
+// if ('job' in fetchedUserData2 && 'title' in fetchedUserData1.job) {
+//   console.log(fetchedUserData2.job.title); // still doesn't compile in strict TS
+// }
+
+// otherwise, we can use TS' optional chaining operator (?.) as follows
+console.log(fetchedUserData2?.job?.title); // error in TS version < 3.7 | gives us error in compilation itself so that we know it is not there
