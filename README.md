@@ -128,4 +128,4 @@ Dependencies Used: **`npm i --save axios`**
 3. Discriminated Unions: [Commit Details](https://github.com/Ch-sriram/typescript/commit/d1ca94764833c11d57e4c0ffbdf913cf1904aac2)
 4. Type Casting - Not much of casting, but informing: [Commit Details](https://github.com/Ch-sriram/typescript/commit/cc67d875ab1b35d98d54cdec40aef2195d6b096f)
 5. **Index Properties** ⭐⭐: [Commit Details](https://github.com/Ch-sriram/typescript/commit/c3754c093240686322eddeddc51bbc6239c6a765)
-6. Function Overloads: [Commit Details]()
+6. Function Overloads: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1884c95b4e04f6c48ac01abdfb1f9d4bc6f41dbf)
