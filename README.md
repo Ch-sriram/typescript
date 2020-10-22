@@ -131,3 +131,7 @@ Dependencies Used: **`npm i --save axios`**
 6. Function Overloads: [Commit Details](https://github.com/Ch-sriram/typescript/commit/1884c95b4e04f6c48ac01abdfb1f9d4bc6f41dbf)
 7. Optional Chaining: [Commit Details](https://github.com/Ch-sriram/typescript/commit/643b932ab9948566f533f0cca81ddd46893b40ac)
 8. Nullish Coalescing: [Commit Details](https://github.com/Ch-sriram/typescript/commit/ff79d26e5a242a6715e1b83bf16a416801672556)
+
+### X. Generics ⭐⭐⭐
+
+1. Built-in Generics & What are Generics? [Commit Details]()
