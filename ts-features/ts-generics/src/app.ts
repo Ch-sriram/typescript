@@ -43,3 +43,99 @@ const promise: Promise<string> = new Promise((resolve, reject) => setTimeout(() 
 promise
   .then(data => console.log(data.split(' ')))
   .catch(error => console.log(error.split(' ')));
+
+
+// GENERIC FUNCTIONS
+// a function that merges 2 objects objA & objB as the input
+function mergeObjects_(objA: object, objB: object) {
+  return Object.assign(objA, objB);
+}
+
+console.log(mergeObjects_({ name: 'Ram' }, { age: 25 })); // {name: "Ram", age: 25}
+
+// we don't get any error when we output the merged object.
+// the problem occurs when we try to store the merged object
+const mergedObj_ = mergeObjects_({ name: 'Ram' }, { age: 25 });
+
+// now when we try to access the 'name' and 'age' field of mergedObj_, TS will thrown an error:
+// mergedObj_.name; // Property 'name' does not exist on type 'object'.ts(2339)
+// mergedObj_.age; // Property 'age' does not exist on type 'object'.ts(2339)
+
+// So here, there are 2 ways to resolve the issue unknown properties
+
+// #1
+// we can annotate that the type of the merged object we get back has a certain structure using the `as` keyword as shown below.
+const mergedObject_ = mergeObjects_({ name: 'Ram' }, { age: 25 }) as { name: string, age: number };
+// now we can access the 'name' and 'age' properties w/o raising any errors
+mergedObject_.name;
+mergedObject_.age;
+
+// #2
+// We can make use of generics to define the mergeObjects() function itself as follows:
+
+// in the angle brackets after function name, we have mentioned to arbitrary types (T & U), which are just type placeholders.
+// when the mergeObjects() method is called with some kind of data, TS automatically infers the type of T and U
+function mergeObjects<T, U>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+} // when we hover on 'mergeObjects', we see its type def as > function mergeObjects<T, U>(objA: T, objB: U): T & U
+// Here, TS infers that this method returns us an intersection of type T and U, i.e., T & U
+
+const mergedObject = mergeObjects({ name: 'Ram' }, { age: 25 }); // hover on 'mergedObject' and we'll see the following type def > `const mergedObject: {name: string;} & {age: number;}`
+
+// we can access the mergedObject's properties w/o any other annotation, because TS inferred the type of the parameter being sent to the mergeObjects because of function being a generic.
+console.log(mergedObject.name); // Ram
+console.log(mergedObject.age); // 25
+
+/**
+ * The reason why TS couldn't infer the returned value of 
+ * mergeObjects_() defined in line #54 and called in line #58 
+ * is because both objA and objB were of 'object' type, and 
+ * an 'object' type can have any properties/methods.
+ * 
+ * And from the function, we're returning an intersection of
+ * both the objects objA & objB, that means the type we're 
+ * returning was also intersection of 2 'object's types which
+ * is 'object & object', which turns out to be 'object'.
+ * 
+ * Therefore, TS will understand that we're sending any kind 
+ * of an object and getting back any kind of an object, where
+ * there's no concreteness (highly vague).
+ * 
+ * To solve this issue, we need to make a generic function as 
+ * shown in line #78, so when it is called (like in line #83)
+ * TS automatically infers the type of the data that's sent
+ * into the method.
+ */
+
+// Also, specifically, when we define a generic function, we 
+// don't set the type then and there, but the types are 
+// resolved when that generic function is called.
+
+// therefore, we can send any kind of data to the mergeObjects() method as shown below.
+const mergedObject2 = mergeObjects(
+  { name: 'Ram', hobbies: ['Reading', 'Coding', 'Sports'] },
+  { age: 25, occupation: 'software engineer' }
+);
+
+// now when we hover on 'mergedObject2', we see the following 
+// type definition (inferred automatically by TS):
+// const mergedObject2: {
+//     name: string;
+//     hobbies: string[];
+// } & {
+//     age: number;
+//     occupation: string;
+// }
+
+console.log(mergedObject2.name, mergedObject2.hobbies[2], mergedObject2.age, mergedObject2.occupation); // Ram Sports 25 software engineer
+
+// while calling the generic function, before passing in the 
+// data, we can specifically mention the types of the 
+// parameters that we're sending to the function as follows:
+const mergedObject3 = mergeObjects<{ name: string, hobbies: string[] }, { age: number, occupation: string }>(
+  { name: 'Ram', hobbies: ['Reading', 'Coding', 'Sports'] },
+  { age: 25, occupation: 'software engineer' }
+);
+
+// although we can mention the types of the parameters we're sending to the generic function, but it is redundant, as TS
+// already infers the type of the values we send as the parameters into the generic function.
