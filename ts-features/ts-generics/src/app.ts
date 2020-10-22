@@ -139,3 +139,39 @@ const mergedObject3 = mergeObjects<{ name: string, hobbies: string[] }, { age: n
 
 // although we can mention the types of the parameters we're sending to the generic function, but it is redundant, as TS
 // already infers the type of the values we send as the parameters into the generic function.
+
+
+// GENERIC CONSTRAINTS
+// with the function we defined in line #78, if we try and send
+// it any kind of an argument, the function won't give any 
+// error, i.e., if we try to make a new object as follows:
+const mergedObject4 = mergeObjects({ name: 'Ram', hobbies: ['Coding'] }, 30); // returns no error even when we sent in 30 ('number' type data) to the generic function because the function accepts generic arguments.
+
+// according to TS, there's no error, but when we try and access 30, we cannot because 30 is not an object, and Object.assign() is only capable of merging objects.
+// And so, we won't be able to merge 30 into objA as seen below
+console.log(mergedObject4); // {name: "Ram", hobbies: ["Coding"]}
+
+// this happens because we have used T & U as the types w/o 
+// putting in any constraints, i.e, we don't care if T & U are
+// whatever type they can be.
+
+// but in reality, we should constrain what we are able to send
+// in as the type of the value to the mergedObject() method 
+// defined in line #78.
+
+// therefore, what we can do is, we can constrain the function
+// line #78 to accept a value, which can be any 'object' by
+// restricting the type T & U to be based on only 'object' type
+
+// so now, we will redefine the function in line #78 as follows:
+function mergeObjs<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+
+// <T extends object> means that the T type can be any 'object' with any structure, but it cannot be anything other than 'object'
+
+// now the function above will only accept an 'object' type 
+// data, but this time, TS will be able to infer the structure
+// of the 'object' type data and will return an intersected
+// 'object' typed value, which will have all its properties/
+// methods accessible w/o anymore type annotation.

@@ -23,4 +23,9 @@ console.log(mergedObject.age);
 const mergedObject2 = mergeObjects({ name: 'Ram', hobbies: ['Reading', 'Coding', 'Sports'] }, { age: 25, occupation: 'software engineer' });
 console.log(mergedObject2.name, mergedObject2.hobbies[2], mergedObject2.age, mergedObject2.occupation);
 const mergedObject3 = mergeObjects({ name: 'Ram', hobbies: ['Reading', 'Coding', 'Sports'] }, { age: 25, occupation: 'software engineer' });
+const mergedObject4 = mergeObjects({ name: 'Ram', hobbies: ['Coding'] }, 30);
+console.log(mergedObject4);
+function mergeObjs(objA, objB) {
+    return Object.assign(objA, objB);
+}
 //# sourceMappingURL=app.js.map
