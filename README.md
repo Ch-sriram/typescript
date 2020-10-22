@@ -134,4 +134,4 @@ Dependencies Used: **`npm i --save axios`**
 
 ### X. Generics ⭐⭐⭐
 
-1. Built-in Generics & What are Generics? [Commit Details]()
+1. Built-in Generics & What are Generics? [Commit Details](https://github.com/Ch-sriram/typescript/commit/7e614e22e9a460dd65188ca571484fec33961056)
