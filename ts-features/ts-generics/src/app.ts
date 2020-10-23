@@ -193,3 +193,37 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 console.log(countAndDescribe('Hi there!')); // ["Hi there!", "Got 9 element(s)."]
 console.log(countAndDescribe(['Sports', 'Cooking', 'Coding'])); // [["Sports", "Cooking", "Coding"], "Got 3 element(s)."]
 // console.log(countAndDescribe(10)); // error: Argument of type 'number' is not assignable to parameter of type 'Lengthy'.ts(2345) -- as a 'number' type doesn't contain 'length' property
+
+
+
+// keyof CONSTRAINT
+
+// function extractAndConvert(obj: object, key: string) {
+//   return obj[key];
+// }
+
+// extractAndConvert({}, 'name');
+
+// Error in line #202 will be the following if we don't mention
+// the generic type.
+// Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{}'.
+//   No index signature with a parameter of type 'string' was found on type '{}'.ts(7053)
+
+/**
+ * We get an index error because TS cannot infer any key of an
+ * object until and unless we mention the `keyof` constraint 
+ * specifically as shown below.
+ */
+
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return 'Value: ' + obj[key];
+}
+
+// In line #218, we have: `U extends keyof T`
+// which means that 'U' will be a key inside the object of type 'T'
+
+// extractAndConvert({}, 'name'); // Argument of type 'string' is not assignable to parameter of type 'never'.ts(2345). Error occurred because the object passed didn't have a 'name' property
+
+console.log(extractAndConvert({ name: 'Ram' }, 'name')); // Value: Ram
+
+// console.log(extractAndConvert({ name: 'ram' }, 'age')); // Argument of type '"age"' is not assignable to parameter of type '"name"'.ts(2345), because 'age' is not a property in the object we sent in.
