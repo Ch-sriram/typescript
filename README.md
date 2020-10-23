@@ -137,4 +137,4 @@ Dependencies Used: **`npm i --save axios`**
 1. Built-in Generics & What are Generics? [Commit Details](https://github.com/Ch-sriram/typescript/commit/7e614e22e9a460dd65188ca571484fec33961056)
 2. Creating a Generic Function: [Commit Details](https://github.com/Ch-sriram/typescript/commit/6f4aa19e673cdb3b38daa078f47f61d4d1ab954d)
 3. Working with Constraints: [Commit Details](https://github.com/Ch-sriram/typescript/commit/cc196b5224a7e5b2e32c6cdca6d742be585eb700)
-4. Generic Function w. Custom Interface: [Commit Details]()
+4. Generic Function w. Custom Interface: [Commit Details](https://github.com/Ch-sriram/typescript/commit/b25a6dc91a989200c9782f3387db45bbc1168110)
