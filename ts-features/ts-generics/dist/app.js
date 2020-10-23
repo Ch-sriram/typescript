@@ -28,4 +28,11 @@ console.log(mergedObject4);
 function mergeObjs(objA, objB) {
     return Object.assign(objA, objB);
 }
+;
+function countAndDescribe(element) {
+    let descriptionText = (element.length === 0) ? 'Got no value.' : `Got ${element.length} element(s).`;
+    return [element, descriptionText];
+}
+console.log(countAndDescribe('Hi there!'));
+console.log(countAndDescribe(['Sports', 'Cooking', 'Coding']));
 //# sourceMappingURL=app.js.map

@@ -175,3 +175,21 @@ function mergeObjs<T extends object, U extends object>(objA: T, objB: U) {
 // of the 'object' type data and will return an intersected
 // 'object' typed value, which will have all its properties/
 // methods accessible w/o anymore type annotation.
+
+
+
+
+// GENERIC FUNCTION w. CUSTOM TYPES
+
+interface Lengthy { length: number };
+
+// T type object, whatever it is, contains a 'length' property
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = (element.length === 0) ? 'Got no value.' : `Got ${element.length} element(s).`;
+  return [element, descriptionText];
+}
+
+// Calling countAndDescribe() with any object that has a 'length' property will throw yield no errors
+console.log(countAndDescribe('Hi there!')); // ["Hi there!", "Got 9 element(s)."]
+console.log(countAndDescribe(['Sports', 'Cooking', 'Coding'])); // [["Sports", "Cooking", "Coding"], "Got 3 element(s)."]
+// console.log(countAndDescribe(10)); // error: Argument of type 'number' is not assignable to parameter of type 'Lengthy'.ts(2345) -- as a 'number' type doesn't contain 'length' property
