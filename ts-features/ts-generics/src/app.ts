@@ -347,3 +347,84 @@ console.log(objectStorage.getItems()); // {0: {name: "Roop"}}
  * And that can be done as follows:
  *  class DataStorage<T extends string | number | boolean>
  */
+
+
+
+// GENERIC UTILITY TYPES
+/**
+ * TS ships with some types that utilize generic types, which
+ * give us certain utility functionalities.
+ * 
+ * These special types may come in handy during compilation.
+ * 
+ * For example, we've a built-in `Partial` type, which we'll 
+ * see in action, below.
+ */
+
+// Partial Generic Utility Type
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+};
+
+// function createCourseGoal(title: string, description: string, completeUntil: Date): CourseGoal {
+//   return { title, description, completeUntil };
+// };
+
+// now instead of returning as shown above in line #370, what we want to do is add title, description and completeUntil step-by-step as shown below:
+// function createCourseGoal({ title, description, completeUntil }: CourseGoal): CourseGoal {
+//   let courseGoal = {};
+//   courseGoal.title = title; // Property 'title' does not exist on type '{}'.ts(2339)
+//   courseGoal.description = description; // Property 'description' does not exist on type '{}'.ts(2339)
+//   courseGoal.completeUntil = completeUntil; // Property 'completeUntil' does not exist on type '{}'.ts(2339)
+//   return courseGoal; // Type '{}' is missing the following properties from type 'CourseGoal': title, description, completeUntilts(2739)
+// }
+
+// we can do the following to get rid of some errors
+// function createCourseGoal({ title, description, completeUntil }: CourseGoal): CourseGoal {
+//   let courseGoal: CourseGoal = {}; // but now we have an error here which is: Type '{}' is missing the following properties from type 'CourseGoal': title, description, completeUntilts(2739)
+//   courseGoal.title = title;
+//   courseGoal.description = description;
+//   courseGoal.completeUntil = completeUntil;
+//   return courseGoal;
+// }
+
+// and so, we get rid of the error in line 385 using the Partial generic utility type as follows:
+// function createCourseGoal({ title, description, completeUntil }: CourseGoal): CourseGoal {
+//   let courseGoal: Partial<CourseGoal> = {};
+//   courseGoal.title = title;
+//   courseGoal.description = description;
+//   courseGoal.completeUntil = completeUntil;
+//   return courseGoal; // error: because the type 'Partial<CourseGoal>' and 'CourseGoal' are not the same, and so, we can simply typecast as shown below.
+// }
+
+// after using the Partial generic utility function and typecasting using 'as' keyword
+function createCourseGoal({ title, description, completeUntil }: CourseGoal): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = completeUntil;
+  return courseGoal as CourseGoal; // no error now
+}
+
+console.log(createCourseGoal({ title: 'MATH', description: 'Algebraic Functions', completeUntil: new Date() }));
+
+
+// Readonly Generic Utility Type
+const namesArray = ['Ram', 'Roop']; // TS Inference says that type def for 'namesArray' is: const namesArray: string[]
+// to 'namesArray' we can add any number of string typed data as follows:
+namesArray.push('Siva');
+namesArray.push('Ramki');
+namesArray.push('Padma');
+
+// but what if we don't want 'namesArray' to let any other items be added to it after declaring and defining it in the beginning?
+// in that case, we use the Readonly generic utility type as shown below
+const namesArrReadOnly: Readonly<string[]> = ['Ram', 'Roop'];
+// namesArrReadOnly.push('Siva'); // Property 'push' does not exist on type 'readonly string[]'.ts(2339)
+// namesArrReadOnly.pop(); // Property 'pop' does not exist on type 'readonly string[]'.ts(2339)
+
+// since 'namesArrReadOnly' is of type 'readonly string[]', we cannot add/remove elements from 'namesArrReadOnly' array.
+
+// READ MORE ON GENERIC UTILITY TYPES: https://www.typescriptlang.org/docs/handbook/utility-types.html
+

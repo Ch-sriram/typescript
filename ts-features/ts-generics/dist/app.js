@@ -80,4 +80,18 @@ objectStorage.addItem(obj1);
 objectStorage.addItem(obj2);
 objectStorage.removeItem(obj1);
 console.log(objectStorage.getItems());
+;
+function createCourseGoal({ title, description, completeUntil }) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = completeUntil;
+    return courseGoal;
+}
+console.log(createCourseGoal({ title: 'MATH', description: 'Algebraic Functions', completeUntil: new Date() }));
+const namesArray = ['Ram', 'Roop'];
+namesArray.push('Siva');
+namesArray.push('Ramki');
+namesArray.push('Padma');
+const namesArrReadOnly = ['Ram', 'Roop'];
 //# sourceMappingURL=app.js.map
