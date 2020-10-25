@@ -139,4 +139,4 @@ Dependencies Used: **`npm i --save axios`**
 3. Working with Constraints: [Commit Details](https://github.com/Ch-sriram/typescript/commit/cc196b5224a7e5b2e32c6cdca6d742be585eb700)
 4. Generic Function w. Custom Interface: [Commit Details](https://github.com/Ch-sriram/typescript/commit/b25a6dc91a989200c9782f3387db45bbc1168110)
 5. The `keyof` Constraint: [Commit Details](https://github.com/Ch-sriram/typescript/commit/68b203888ac8392558de9ac1e04649514557af74)
-6. Generic Classes: [Commit Details]()
+6. Generic Classes: [Commit Details](https://github.com/Ch-sriram/typescript/commit/75e752c1cfcf745bf9c94e72223c6555b9819cbd)
