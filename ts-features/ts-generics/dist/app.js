@@ -39,4 +39,45 @@ function extractAndConvert(obj, key) {
     return 'Value: ' + obj[key];
 }
 console.log(extractAndConvert({ name: 'Ram' }, 'name'));
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
+    }
+}
+const textStorage = new DataStorage();
+textStorage.addItem('crazy');
+textStorage.addItem('ram');
+console.log(textStorage.getItems());
+textStorage.removeItem('ram');
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
+numberStorage.addItem(25);
+numberStorage.addItem(244.2322);
+numberStorage.removeItem(25);
+console.log(numberStorage.getItems());
+const numberStringStorage = new DataStorage();
+numberStringStorage.addItem('swaroop');
+numberStringStorage.addItem(233.44);
+const objectStorage = new DataStorage();
+objectStorage.addItem({ name: 'Ram' });
+objectStorage.addItem({ name: 'Roop' });
+objectStorage.removeItem({ name: 'Ram' });
+console.log(objectStorage.getItems());
+objectStorage.removeItem({});
+console.log(objectStorage.getItems());
+const obj1 = { name: "Ram" };
+const obj2 = { name: "Roop" };
+objectStorage.addItem(obj1);
+objectStorage.addItem(obj2);
+objectStorage.removeItem(obj1);
+console.log(objectStorage.getItems());
 //# sourceMappingURL=app.js.map

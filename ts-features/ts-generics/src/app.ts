@@ -227,3 +227,123 @@ function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) 
 console.log(extractAndConvert({ name: 'Ram' }, 'name')); // Value: Ram
 
 // console.log(extractAndConvert({ name: 'ram' }, 'age')); // Argument of type '"age"' is not assignable to parameter of type '"name"'.ts(2345), because 'age' is not a property in the object we sent in.
+
+
+
+// GENERIC CLASSES
+
+class DataStorage<T> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+// if we only want to store text, we can use DataStorage for 'string' types
+const textStorage = new DataStorage<string>();
+// textStorage.addItem(10); // Argument of type 'number' is not assignable to parameter of type 'string'.ts(2345)
+textStorage.addItem('crazy');
+textStorage.addItem('ram');
+console.log(textStorage.getItems()); // ["crazy", "ram"]
+textStorage.removeItem('ram');
+console.log(textStorage.getItems()); // ["crazy"]
+
+// if we want to store int or float values, we can use the 'number' typed DataStorage instance
+const numberStorage = new DataStorage<number>();
+numberStorage.addItem(25);
+// numberStorage.addItem('443'); // Argument of type 'string' is not assignable to parameter of type 'number'.ts(2345)
+numberStorage.addItem(244.2322);
+numberStorage.removeItem(25);
+console.log(numberStorage.getItems()); // [244.2322]
+
+// we can also have a union type storage as follows
+const numberStringStorage = new DataStorage<number | string>();
+numberStringStorage.addItem('swaroop');
+numberStringStorage.addItem(233.44);
+// numberStringStorage.addItem(true); // Argument of type 'boolean' is not assignable to parameter of type 'string | number'.ts(2345)
+
+/**
+ * One problem we might've would be using the DataStorage class
+ * and that is storing the objects, i.e., we've to store 
+ * objects using the DataStorage class.
+ * 
+ * In that case, removeItem() method of the DataStorage class
+ * won't work properly because objects in TS/JS aren't stored
+ * using the indices -- and inside the removeItem() method,
+ * we're trying to access the object data using the index of 
+ * the object which we get as -1 and in JS/TS '-1'th index 
+ * signifies the last element, and so, the last element in the
+ * object container will be removed as seen below.
+ */
+
+const objectStorage = new DataStorage<object>();
+objectStorage.addItem({ name: 'Ram' });
+objectStorage.addItem({ name: 'Roop' });
+
+// do some operations on the objects and then remove the item
+objectStorage.removeItem({ name: 'Ram' }); // removes {name: 'Roop'} because that's the last object as explained above in line 275 to 285.
+
+console.log(objectStorage.getItems()); // [0: {name: "Ram"}]
+
+/**
+ * Even if we add 'Roop' back and remove some random element 
+ * which is not even there in the `data` of the instance, even
+ * then, we would remove the last element inside the `data` 
+ * property list of the objectStorage instance, because of the
+ * way our DataStorage class is built.
+ * 
+ * As objects and arrays are reference types, inside our 
+ * DataStorage class, we won't be able to refer to their 
+ * indices, as we use indexOf() method expects the same value/
+ * reference that was stored inside its object previously.
+ * 
+ * When we're trying to call removeItem() using an object made 
+ * then and there, JS/TS will create the same object with a 
+ * different reference and then indexOf() won't be able to find
+ * it inside the list of objects inside `data` property of the
+ * objectStorage instance.
+ * 
+ * To show an example of how to make this work, we do the 
+ * following for the current way DataStorage class is defined
+ */
+
+objectStorage.removeItem({}); // we'll still be able to remove the last element, which is {name: "Ram"}
+console.log(objectStorage.getItems()); // []
+
+// now, we can remove the appropriate element using it's reference stored at some place else
+const obj1 = { name: "Ram" };
+const obj2 = { name: "Roop" };
+
+objectStorage.addItem(obj1);
+objectStorage.addItem(obj2);
+objectStorage.removeItem(obj1); // it will properly delete {name: "Ram"} from the `data` property object list
+console.log(objectStorage.getItems()); // {0: {name: "Roop"}}
+
+/**
+ * Although we can use the DataStorage class for object and 
+ * array type data types as seen above, but still it won't be a
+ * good way to use the DataStorage class because we still have 
+ * to know the array/object items' reference which can only be
+ * achieved by storing each and every array/object element 
+ * added to the DataStorage class' instance by storing them in 
+ * a separate container, which will take extra space, which we
+ * don't want to do, as that's wastage of space.
+ */
+
+/**
+ * Therefore, a better idea would be to make a 'DataStorage' 
+ * class just for primitive types and then make another 
+ * 'DataStorage' class for reference typed data.
+ * 
+ * And that can be done as follows:
+ *  class DataStorage<T extends string | number | boolean>
+ */
