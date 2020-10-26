@@ -1,0 +1,19 @@
+{
+  "name": "ts-decorators",
+  "version": "1.0.0",
+  "description": "concepts and syntax related to decorators",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "keywords": [
+    "decorator",
+    "typescript"
+  ],
+  "author": "Sriram Chandrabhatta",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.5.4"
+  }
+}
