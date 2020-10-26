@@ -428,3 +428,81 @@ const namesArrReadOnly: Readonly<string[]> = ['Ram', 'Roop'];
 
 // READ MORE ON GENERIC UTILITY TYPES: https://www.typescriptlang.org/docs/handbook/utility-types.html
 
+
+
+
+// GENERIC TYPES vs. UNION TYPES
+// Source of confusion occurs from distinguishing between 
+// Union Types & Generic Types. Suppose we've the following 
+// class as seen below:
+
+class DataStorage2<T extends string | boolean | number> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    if (this.data.indexOf(item) === -1)
+      return;
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+// Now, we could re-write the class above as seen below:
+class DataStorage3 {
+  private data: (string | number | boolean)[] = [];
+
+  addItem(item: string | number | boolean) {
+    this.data.push(item);
+  }
+
+  removeItem(item: string | number | boolean) {
+    if (this.data.indexOf(item) === -1) return;
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+/**
+ * The vital difference between classes 'DataStorage2' & 
+ * 'DataStorage3' are that 'DataStorage3', in the first glance,
+ * even though it looks like it does the same job as that of
+ * 'DataStorage2' class --- it doesn't.
+ * 
+ * Because, in 'DataStorage3' class, what TS infers from the 
+ * `data` property is that, the array can take in either 
+ * 'number', 'boolean' or 'string' type data. For the `addItem`
+ * and `removeItem` properties, TS infers that, the `item` 
+ * parameter can be either 'string', 'number' or 'boolean', 
+ * meaning, there's no constraint on the class here, but there 
+ * are type constraints on the property and the methods 
+ * themselves, i.e., 
+ *                  We can create a 'DataStorage3' class' 
+ * instance, and add values that can be either 'number', 
+ * 'string' or 'boolean' typed.
+ *                  But, when we create an instance of 
+ * 'DataStorage2' class, we provide the type in the beginning
+ * itself, when instantiating the instance of the class, and
+ * that type is used as the annotation for the methods 
+ * internally, and so, we can say that, using 'DataStorage2' 
+ * class, we fixate the entire instance to pertain to a certain
+ * type.
+ * 
+ * Therefore, in 'DataStorage2' class, what we're saying is 
+ * that, whenever we're working with that class, we're fixating
+ * ourselves to work with one type of data.
+ * 
+ * Whereas, in 'DataStorage3' class, what we're saying is that,
+ * whenever we're working with that class, we're not fixating
+ * ourselves to work with any type of data, but the methods and
+ * properties have their own typed data.
+ */
