@@ -142,3 +142,11 @@ Dependencies Used: **`npm i --save axios`**
 6. Generic Classes: [Commit Details](https://github.com/Ch-sriram/typescript/commit/75e752c1cfcf745bf9c94e72223c6555b9819cbd)
 7. **[Generic Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)** like `Partial<>` & `Readonly<>`: [Commit Details](https://github.com/Ch-sriram/typescript/commit/9877db1924d9e55f52e81fd465befaa7e5f32229)
 8. Generic Types vs Union Types: [Commit Details](https://github.com/Ch-sriram/typescript/commit/6a4bfdc2e52ac01c8a6d15313256e0c222beb866)
+
+### XI. Decorators ⭐⭐
+
+Open `tsconfig.json` and set **`"target": "es6"`** & **`"experimentalDecorators": true`** before moving ahead with the content below.
+
+Note: For more info on `tsconfig.json` related to this section, check this file [here](./ts-features/ts-decorators/tsconfig.json)
+
+1. A First Class Decorator: [Commit Details]()
