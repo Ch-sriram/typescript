@@ -151,4 +151,4 @@ Note: For more info on `tsconfig.json` related to this section, check this file 
 
 1. A First Class Decorator: [Commit Details](https://github.com/Ch-sriram/typescript/commit/8bc01aaae630f4caa32c0c103ed6aa33e94ceebd)
 2. Working with Decorator Factories: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f8dea6eac15c715fcee46e9eae210058eddae8b7)
-3. Using Decorator(s) to Manipulate the DOM: [Commit Details]()
+3. Using Decorator(s) to Manipulate the DOM: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a05b656f5a58edaa85ad447e32f75ee4817954c5)
