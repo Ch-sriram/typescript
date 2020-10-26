@@ -150,3 +150,4 @@ Open `tsconfig.json` and set **`"target": "es6"`** & **`"experimentalDecorators"
 Note: For more info on `tsconfig.json` related to this section, check this file [here](./ts-features/ts-decorators/tsconfig.json)
 
 1. A First Class Decorator: [Commit Details](https://github.com/Ch-sriram/typescript/commit/8bc01aaae630f4caa32c0c103ed6aa33e94ceebd)
+2. Working with Decorator Factories: [Commit Details]()
