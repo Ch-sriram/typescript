@@ -11,6 +11,20 @@ function Logger(logString) {
         console.log(constructor);
     };
 }
+function WithTemplate1(template, hookID) {
+    return function (_) {
+        const hookElement = document.getElementById(hookID);
+        hookElement.innerHTML = template;
+    };
+}
+function WithTemplate2(template, hookID) {
+    return function (constructor) {
+        const hookElement = document.getElementById(hookID);
+        const p = new constructor();
+        hookElement.innerHTML = template;
+        hookElement.querySelector('h1').textContent = p.name;
+    };
+}
 let Person = class Person {
     constructor() {
         this.name = 'Ram';
@@ -18,6 +32,6 @@ let Person = class Person {
     }
 };
 Person = __decorate([
-    Logger('LOGGING -- PERSON')
+    WithTemplate1('<h1>My Person Object</h1>', 'app')
 ], Person);
 //# sourceMappingURL=app.js.map
