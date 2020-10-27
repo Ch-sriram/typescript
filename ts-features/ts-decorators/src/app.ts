@@ -77,6 +77,56 @@ class Person {
   }
 }
 
+// PROPERTY DECORATORS -- Decorators added constructs other than a class.
+
+/**
+ * Decorator to a class property receives two arguments. 
+ * 
+ * @param target : if it is of instance type, then the type of 
+ *                 the target will be prototype of the object 
+ *                 that got created. If it was a static 
+ *                 property, 'target' would refer to the 
+ *                 constructor function instead. Therefore 
+ *                 taking 'any' would be better.
+ * 
+ * @param propName: can be a 'string' or a 'Symbol', as we 
+ *                  don't know what we use as a property name.
+ * 
+ */
+function Log(target: any, propName: string | Symbol) {
+  console.log('Property Decorator: @Log');
+  console.log(target);
+  console.log(propName);
+}
+
+// NOTE-1: To use a decorator, we definitely need a class, but we don't have to add all the decorators directly to the class.
+// NOTE-2: Here, we're only adding Decorator(s) to the property(s) of the 'Product' class.
+class Product {
+  // Adding a @Log decorator to a `title` property
+  @Log
+  title: string;
+  private _price: number;
+
+  set price(val: number) {
+    if (val > 0) this._price = val;
+    else throw new Error('Invalid price - should be positive!');
+  }
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this._price = price;
+  }
+  
+  getPriceWithTax(tax: number) {
+    return this._price * (1 + tax);
+  }
+}
+
+// When do property decorators execute? same as when our class
+// decorators execute i.e., as soon as the class definition
+// is parsed by TS/JS (not when an instance of the class is 
+// created).
+
 /**
  * Output:
  * ------
@@ -92,4 +142,10 @@ class Person {
  *      console.log('Creating Person Instance');
  *    }
  * }
+ * Property Decorator: @Log                   app.ts:97
+ * > {constructor: f, getPriceWithTax: f}     app.ts:98
+ *   > constructor: class Product
+ *   > getPriceWithTax: f getPriceWithTax(tax)
+ *   > set priceL f price(val)
+ * title                                      app.ts:99
  */

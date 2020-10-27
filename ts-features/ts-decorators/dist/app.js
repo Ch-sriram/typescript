@@ -39,4 +39,27 @@ Person = __decorate([
     Logger('LOGGING -- PERSON'),
     WithTemplate2('<h1>My Person Object</h1>', 'app')
 ], Person);
+function Log(target, propName) {
+    console.log('Property Decorator: @Log');
+    console.log(target);
+    console.log(propName);
+}
+class Product {
+    constructor(title, price) {
+        this.title = title;
+        this._price = price;
+    }
+    set price(val) {
+        if (val > 0)
+            this._price = val;
+        else
+            throw new Error('Invalid price - should be positive!');
+    }
+    getPriceWithTax(tax) {
+        return this._price * (1 + tax);
+    }
+}
+__decorate([
+    Log
+], Product.prototype, "title", void 0);
 //# sourceMappingURL=app.js.map
