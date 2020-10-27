@@ -8,7 +8,9 @@
 // to this decorator function, we can pass in extra parameters, not only the constructor method
 // we can now use the power of closure and use the params of the outer function inside the actual decorator method that's returned as seen below
 function Logger(logString: string) {
+  console.log('Factory: Logger()');
   return function (constructor: Function) {
+    console.log('Decorator: @Logger');
     console.log(logString);
     console.log(constructor);
   }
@@ -40,7 +42,9 @@ function WithTemplate1(template: string, hookID: string) {
  */
 
 function WithTemplate2(template: string, hookID: string) {
+  console.log('Factory: WithTemplate2()');
   return function (constructor: any) {
+    console.log('Decorator: @WithTemplate2');
     const hookElement = document.getElementById(hookID)!;
     const p = new constructor(); // only works here, if it is typed as 'any'
     hookElement.innerHTML = template;
@@ -48,9 +52,23 @@ function WithTemplate2(template: string, hookID: string) {
   }
 }
 
-// this time, we call the decorator factory method, as that wil return a function, which will be a reference
-// @Logger('LOGGING -- PERSON')
-@WithTemplate1('<h1>My Person Object</h1>', 'app')
+// We can add any number of decorators to be run before the 
+// class the is defined. For instance, we are adding the 
+// @Logger decorator before the 'Person' class.
+//
+// NOTE 1: The order of execution of the decorators will be 
+//         Bottom Up, i.e., in this case, @WithTemplate1 
+//         decorator wil execute before @Logger decorator.
+//
+// Note 2: NOTE 1 talks about the order of execution of the 
+//         class decorators, not the order of execution of
+//         decorator factories (i.e., functions that return 
+//         the actual decorators -- which are used in this 
+//         case) which are executed as per JS/TS function 
+//         execution policy (i.e., functions get executed as 
+//         soon as they're called) i.e., Top to Bottom.
+@Logger('LOGGING -- PERSON')
+@WithTemplate2('<h1>My Person Object</h1>', 'app')
 class Person {
   name = 'Ram';
 
@@ -60,15 +78,18 @@ class Person {
 }
 
 /**
- * We can build some really advanced decorators as we've seen 
- * above, which can be exposed as a 3rd party library to import
- * the decorator function and add it to the class and we can 
- * manage to render some content on the document.
- * 
- * This is how it is done in Angular, where we use @Component
- * decorator and use 'selector' and 'template' properties to 
- * make a component that is rendered on to the view, which is
- * relatively close to what we implemented here. Although, a
- * decorator in Angular Framework is more complex than the 
- * decorator here.
+ * Output:
+ * ------
+ * Factory: Logger()                          app.ts:11
+ * Factory: WithTemplate2()                   app.ts:45
+ * Decorator: @WithTemplate2                  app.ts:47
+ * Creating Person Instance                   app.ts:76
+ * Decorator: @Logger                         app.ts:13
+ * LOGGING -- PERSON                          app.ts:14
+ * class Person {                             app.ts:15
+ *    constructor() {
+ *      this.name = 'Ram';
+ *      console.log('Creating Person Instance');
+ *    }
+ * }
  */

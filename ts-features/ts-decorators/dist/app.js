@@ -6,7 +6,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 function Logger(logString) {
+    console.log('Factory: Logger()');
     return function (constructor) {
+        console.log('Decorator: @Logger');
         console.log(logString);
         console.log(constructor);
     };
@@ -18,7 +20,9 @@ function WithTemplate1(template, hookID) {
     };
 }
 function WithTemplate2(template, hookID) {
+    console.log('Factory: WithTemplate2()');
     return function (constructor) {
+        console.log('Decorator: @WithTemplate2');
         const hookElement = document.getElementById(hookID);
         const p = new constructor();
         hookElement.innerHTML = template;
@@ -32,6 +36,7 @@ let Person = class Person {
     }
 };
 Person = __decorate([
-    WithTemplate1('<h1>My Person Object</h1>', 'app')
+    Logger('LOGGING -- PERSON'),
+    WithTemplate2('<h1>My Person Object</h1>', 'app')
 ], Person);
 //# sourceMappingURL=app.js.map
