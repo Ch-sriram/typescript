@@ -99,6 +99,66 @@ function Log(target: any, propName: string | Symbol) {
   console.log(propName);
 }
 
+// ACCESSOR & PARAMETER Decorators
+// ACCESSORS are setters/getters; PARAMETERS are method arguments
+
+
+
+/**
+ * DECORATOR Function for Accessor in 'Product' class
+ * 
+ * @param target : type will be 'Prototype' if we're dealing 
+ *                 with instance accessor.
+ *                 type will be 'Function' if we're dealing
+ *                 with a static accessor.
+ *                 Therefore, it is better to assume it as of 
+ *                 'any' type for simplicity.
+ * 
+ * @param accessorName : name of the accessor can be of   
+ *                       'string' or 'Symbol' type.
+ * 
+ * @param descriptor : type: 'PropertyDescriptor' which is a 
+ *                     built-in type of TS.
+ * 
+ */
+function Log2(target: any, accessorName: string, descriptor: PropertyDescriptor) {
+  console.log('Accessor Decorator: @Log2');
+  console.log(target);
+  console.log(accessorName);
+  console.log(descriptor);
+}
+
+/**
+ * DECORATOR Function for Method in 'Product' Class
+ * @param target : if an instance method: type of 'target' is same as that of the 'Prototype' of the Object.
+ *                 if it is a static method: type of 'target' is same as that of constructor, which is 'Function'
+ *                 instead of trying to narrow down the type of 'target', we can use the 'any' type for simplicity
+ * @param name : method name is always a 'string' or 'Symbol' typed value
+ * @param descriptor : type of 'descriptor' is an in-built TS type known as 'PropertyDescriptor'
+ * 
+ * We can see that the arguments used here are same as that of 
+ * the arguments in a decorator function for an accessor.
+ */
+function Log3(target: any, name: string | Symbol, descriptor: PropertyDescriptor) {
+  console.log(`Method Decorator: @Log3`);
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+
+/**
+ * 
+ * @param target : Same type as that of method decorator mentioned above.
+ * @param name : Same type as that of method decorator mentioned above. NOTE: Here, 'name' is method name, not the argument name.
+ * @param position : 'number' typed data which is the index position of the argument in the internal `arguments` list of the function
+ */
+function Log4(target: any, name: string | Symbol, position: number) {
+  console.log(`Parameter Decorator: @Log4`);
+  console.log(target);
+  console.log(name);
+  console.log(position); // 0 => 1st parameter
+}
+
 // NOTE-1: To use a decorator, we definitely need a class, but we don't have to add all the decorators directly to the class.
 // NOTE-2: Here, we're only adding Decorator(s) to the property(s) of the 'Product' class.
 class Product {
@@ -107,6 +167,8 @@ class Product {
   title: string;
   private _price: number;
 
+  // Adding @Log2 decorator for `price` setter accessor
+  @Log2
   set price(val: number) {
     if (val > 0) this._price = val;
     else throw new Error('Invalid price - should be positive!');
@@ -117,7 +179,9 @@ class Product {
     this._price = price;
   }
   
-  getPriceWithTax(tax: number) {
+  // Adding @Log3 decorator for `getPriceWithTax` method
+  @Log3
+  getPriceWithTax(@Log4 tax: number) { // Adding @Log4 decorator for `tax` parameter
     return this._price * (1 + tax);
   }
 }
@@ -128,24 +192,58 @@ class Product {
 // created).
 
 /**
- * Output:
+ * Output
  * ------
- * Factory: Logger()                          app.ts:11
- * Factory: WithTemplate2()                   app.ts:45
- * Decorator: @WithTemplate2                  app.ts:47
- * Creating Person Instance                   app.ts:76
- * Decorator: @Logger                         app.ts:13
- * LOGGING -- PERSON                          app.ts:14
- * class Person {                             app.ts:15
- *    constructor() {
- *      this.name = 'Ram';
- *      console.log('Creating Person Instance');
- *    }
- * }
- * Property Decorator: @Log                   app.ts:97
- * > {constructor: f, getPriceWithTax: f}     app.ts:98
- *   > constructor: class Product
- *   > getPriceWithTax: f getPriceWithTax(tax)
- *   > set priceL f price(val)
- * title                                      app.ts:99
+ * app.ts:11 Factory: Logger()
+ * app.ts:45 Factory: WithTemplate2()
+ * app.ts:47 Decorator: @WithTemplate2
+ * app.ts:76 Creating Person Instance
+ * app.ts:13 Decorator: @Logger
+ * app.ts:14 LOGGING -- PERSON
+ * app.ts:15 class Person {
+ *             constructor() {
+ *               this.name = 'Ram';
+ *               console.log('Creating Person Instance');
+ *             }
+ *           }
+ * app.ts:97 Property Decorator: @Log
+ * app.ts:98 > {constructor: ƒ, getPriceWithTax: ƒ}
+ *             > constructor: class Product
+ *             > getPriceWithTax: ƒ getPriceWithTax(tax)
+ *             > set price: ƒ price(val)
+ *             > __proto__: Object
+ * app.ts:99 title
+ * app.ts:125 Accessor Decorator: @Log2
+ * app.ts:126 > {constructor: ƒ, getPriceWithTax: ƒ}
+ *              > constructor: class Product
+ *              > getPriceWithTax: ƒ getPriceWithTax(tax)
+ *              > set price: ƒ price(val)
+ *              > __proto__: Object
+ * app.ts:127 price
+ * app.ts:128 > {get: undefined, enumerable: false, configurable: true, set: ƒ}
+ *                configurable: true
+ *                enumerable: false
+ *                get: undefined
+ *              > set: ƒ price(val)
+ *              > __proto__: Object
+ * app.ts:156 Parameter Decorator: @Log4
+ * app.ts:157 > {constructor: ƒ, getPriceWithTax: ƒ}
+ *              > constructor: class Product
+ *              > getPriceWithTax: ƒ getPriceWithTax(tax)
+ *              > set price: ƒ price(val)
+ *              > __proto__: Object
+ * app.ts:158 getPriceWithTax
+ * app.ts:159 0
+ * app.ts:143 Method Decorator: @Log3
+ * app.ts:144 > {constructor: ƒ, getPriceWithTax: ƒ}
+ *              > constructor: class Product
+ *              > getPriceWithTax: ƒ getPriceWithTax(tax)
+ *              > set price: ƒ price(val)
+ *              > __proto__: Object
+ * app.ts:146 > {writable: true, enumerable: false, configurable: true, value: ƒ}
+ *                configurable: true
+ *                enumerable: false
+ *              > value: ƒ getPriceWithTax(tax)
+ *                writable: true
+ *              > __proto__: Object
  */
