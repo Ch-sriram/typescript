@@ -154,4 +154,4 @@ Note: For more info on `tsconfig.json` related to this section, check this file 
 3. Using Decorator(s) to Manipulate the DOM: [Commit Details](https://github.com/Ch-sriram/typescript/commit/a05b656f5a58edaa85ad447e32f75ee4817954c5)
 4. Adding Multiple Decorators to a single Class: [Commit Details](https://github.com/Ch-sriram/typescript/commit/8bbea2921dddc438a320cf822f401e10f9bec243)
 5. Property Decorators: [Commit Details](https://github.com/Ch-sriram/typescript/commit/f7858835d37c3cb4242501a1a8b480bbe8eaab91)
-6. Accessor, Method & Parameter Decorators: [Commit Details]()
+6. Accessor, Method & Parameter Decorators: [Commit Details](https://github.com/Ch-sriram/typescript/commit/030d3092d585fea27cc42732a9d2e3735b68aec8)
