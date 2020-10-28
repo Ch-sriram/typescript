@@ -41,14 +41,79 @@ function WithTemplate1(template: string, hookID: string) {
  * follows:
  */
 
-function WithTemplate2(template: string, hookID: string) {
-  console.log('Factory: WithTemplate2()');
-  return function (constructor: any) {
-    console.log('Decorator: @WithTemplate2');
-    const hookElement = document.getElementById(hookID)!;
-    const p = new constructor(); // only works here, if it is typed as 'any'
-    hookElement.innerHTML = template;
-    hookElement.querySelector('h1')!.textContent = p.name;
+/**
+ * In order to do more advanced things with the decorator, 
+ * we've to understand that some decorators, like, class and 
+ * method decorators, actually are also capable of returning
+ * something.
+ * 
+ * NOTE that we're not talking about a decorator function that
+ * gets returned from a decorator factory. What we really mean
+ * is that the decorator function itself returns something 
+ * (which modifies the class' constructor or class' method(s)).
+ * 
+ * In our WithTemplate decorator factory, we're returning a 
+ * decorator that gets added to a class. In such a decorator 
+ * function, we can return a new constructor function which 
+ * will replace the old constructor function of the class on 
+ * which we want to add the decorator on.
+ * 
+ * Therefore, here we can return a new constructor function, or
+ * a new class that extends the old constructor and then inside
+ * the new class, we'll modify the old constructor by creating
+ * our own constructor inside the decorator.
+ */
+
+/**
+ * For the following template type:
+ *  <T extends {new(...args: any[]): {name: string}}>
+ * meaning is: T can only be of the form of an object (which 
+ * is 'new'-able, i.e., which can be made into an object by 
+ * using the `new` keyword => it has constructor function) 
+ * whose constructor function can take any number of arguments
+ * of any type, and such an object always returns an object 
+ * which has the `name` property which is of type 'string'.
+ * If we don't return an object with `name` property, we won't
+ * be able to refer to `name` inside the generic decorator 
+ * function as seen below (viz... `this.name` in line 114).
+ *
+ * Because the generic function has the constructor to take in
+ * any number of arguments (viz: new(...args: any[])), it means
+ * that the constructor also has to take in any no. of 
+ * arguments, as seen below when defining the constructor of 
+ * the anonymous class, which has `constructor(..._: any[])`.
+ * 
+ * NOTE that we have `..._: any[]` instead of `...args: any[]`,
+ * because `..._` means that the TS should ignore warnings of 
+ * the `_` variable to be actually used inside the constructor.
+ */
+
+/**
+ * One thing to remember is that, since this decorator returns 
+ * a class, modifying the old constructor with the new one, 
+ * this decorator only runs when a new instance of the class is
+ * created, as seen below.
+ * 
+ * If we wanted to, we could've not extended the 
+ * originalConstructor from 'Person' class -- thereby 
+ * overriding the original constructor with the one we defined
+ * in the decorator in the anonymous class that we returned.
+ */
+
+function WithTemplate(template: string, hookID: string) {
+  console.log('Factory: WithTemplate()');
+  // we need this decorator function to be generic because types won't match when calling this decorator factory
+  return function <T extends {new(...args: any[]): {name: string}}>(originalConstructor: T) {
+    return class extends originalConstructor {
+      constructor(..._: any[]) {
+        super();
+        console.log('Decorator: @WithTemplate');
+        const hookElement = document.getElementById(hookID)!;
+        // const p = new originalConstructor(); // we don't need to call our original constructor here, as we're inside the extended class - and so, we can use `this` to refer to properties/methods of this particular class
+        hookElement.innerHTML = template;
+        hookElement.querySelector('h1')!.textContent = this.name;
+      }
+    }
   }
 }
 
@@ -68,7 +133,7 @@ function WithTemplate2(template: string, hookID: string) {
 //         execution policy (i.e., functions get executed as 
 //         soon as they're called) i.e., Top to Bottom.
 @Logger('LOGGING -- PERSON')
-@WithTemplate2('<h1>My Person Object</h1>', 'app')
+@WithTemplate('<h1>My Person Object</h1>', 'app')
 class Person {
   name = 'Ram';
 
@@ -76,6 +141,11 @@ class Person {
     console.log('Creating Person Instance');
   }
 }
+
+// if we don't instantiate an object of the class, we won't see
+// the execution of the @WithTemplate Decorator.
+const person = new Person(); // if commented, we won't get 'Ram' in the output
+console.log(person);
 
 // PROPERTY DECORATORS -- Decorators added constructs other than a class.
 
@@ -212,61 +282,38 @@ class Product {
 const b1 = new Product('Book', 100);
 const b2 = new Product('Book', 143.2);
 
-
-
 /**
  * Output
  * ------
  * app.ts:11 Factory: Logger()
- * app.ts:45 Factory: WithTemplate2()
- * app.ts:47 Decorator: @WithTemplate2
- * app.ts:76 Creating Person Instance
+ * app.ts:104 Factory: WithTemplate()
  * app.ts:13 Decorator: @Logger
  * app.ts:14 LOGGING -- PERSON
- * app.ts:15 class Person {
- *             constructor() {
- *               this.name = 'Ram';
- *               console.log('Creating Person Instance');
- *             }
- *           }
- * app.ts:97 Property Decorator: @Log
- * app.ts:98 > {constructor: ƒ, getPriceWithTax: ƒ}
- *             > constructor: class Product
- *             > getPriceWithTax: ƒ getPriceWithTax(tax)
- *             > set price: ƒ price(val)
- *             > __proto__: Object
- * app.ts:99 title
- * app.ts:125 Accessor Decorator: @Log2
- * app.ts:126 > {constructor: ƒ, getPriceWithTax: ƒ}
- *              > constructor: class Product
- *              > getPriceWithTax: ƒ getPriceWithTax(tax)
- *              > set price: ƒ price(val)
- *              > __proto__: Object
- * app.ts:127 price
- * app.ts:128 > {get: undefined, enumerable: false, configurable: true, set: ƒ}
- *                configurable: true
- *                enumerable: false
- *                get: undefined
- *              > set: ƒ price(val)
- *              > __proto__: Object
- * app.ts:156 Parameter Decorator: @Log4
- * app.ts:157 > {constructor: ƒ, getPriceWithTax: ƒ}
- *              > constructor: class Product
- *              > getPriceWithTax: ƒ getPriceWithTax(tax)
- *              > set price: ƒ price(val)
- *              > __proto__: Object
- * app.ts:158 getPriceWithTax
- * app.ts:159 0
- * app.ts:143 Method Decorator: @Log3
- * app.ts:144 > {constructor: ƒ, getPriceWithTax: ƒ}
- *              > constructor: class Product
- *              > getPriceWithTax: ƒ getPriceWithTax(tax)
- *              > set price: ƒ price(val)
- *              > __proto__: Object
- * app.ts:146 > {writable: true, enumerable: false, configurable: true, value: ƒ}
- *                configurable: true
- *                enumerable: false
- *              > value: ƒ getPriceWithTax(tax)
- *                writable: true
- *              > __proto__: Object
+ * app.ts:15 class extends originalConstructor {
+ *              constructor(..._) {
+ *                super();
+ *                console.log('Decorator: @WithTemplate');
+ *                const hookElement = document.getElementById(hookID)!;  
+ *                hookElement.innerHTML = template;
+ *                hookElement.querySelector('h1)!.textContent = this.name;
+ *              }
+ *            }
+ * app.ts:141 Creating Person Instance
+ * app.ts:110 Decorator: @WithTemplate
+ * app.ts:148 {name: "Ram"}
+ * app.ts:167 Property Decorator: @Log
+ * app.ts:168 {constructor: ƒ, getPriceWithTax: ƒ}
+ * app.ts:169 title
+ * app.ts:195 Accessor Decorator: @Log2
+ * app.ts:196 {constructor: ƒ, getPriceWithTax: ƒ}
+ * app.ts:197 price
+ * app.ts:198 {get: undefined, enumerable: false, configurable: true, set: ƒ}
+ * app.ts:226 Parameter Decorator: @Log4
+ * app.ts:227 {constructor: ƒ, getPriceWithTax: ƒ}
+ * app.ts:228 getPriceWithTax
+ * app.ts:229 0
+ * app.ts:213 Method Decorator: @Log3
+ * app.ts:214 {constructor: ƒ, getPriceWithTax: ƒ}
+ * app.ts:215 getPriceWithTax
+ * app.ts:216 {writable: true, enumerable: false, configurable: true, value: ƒ}
  */

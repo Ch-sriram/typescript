@@ -22,14 +22,18 @@ function WithTemplate1(template, hookID) {
         hookElement.innerHTML = template;
     };
 }
-function WithTemplate2(template, hookID) {
-    console.log('Factory: WithTemplate2()');
-    return function (constructor) {
-        console.log('Decorator: @WithTemplate2');
-        const hookElement = document.getElementById(hookID);
-        const p = new constructor();
-        hookElement.innerHTML = template;
-        hookElement.querySelector('h1').textContent = p.name;
+function WithTemplate(template, hookID) {
+    console.log('Factory: WithTemplate()');
+    return function (originalConstructor) {
+        return class extends originalConstructor {
+            constructor(..._) {
+                super();
+                console.log('Decorator: @WithTemplate');
+                const hookElement = document.getElementById(hookID);
+                hookElement.innerHTML = template;
+                hookElement.querySelector('h1').textContent = this.name;
+            }
+        };
     };
 }
 let Person = class Person {
@@ -40,8 +44,10 @@ let Person = class Person {
 };
 Person = __decorate([
     Logger('LOGGING -- PERSON'),
-    WithTemplate2('<h1>My Person Object</h1>', 'app')
+    WithTemplate('<h1>My Person Object</h1>', 'app')
 ], Person);
+const person = new Person();
+console.log(person);
 function Log(target, propName) {
     console.log('Property Decorator: @Log');
     console.log(target);
