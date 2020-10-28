@@ -192,6 +192,29 @@ class Product {
 // created).
 
 /**
+ * What's the execution order of decorators?
+ * -----------------------------------------
+ * Before knowing the order of execution of decorators, it is 
+ * important to understand that decorators do not depend on the
+ * instance creation of the class, running of the decorator 
+ * depends on parsing the class, i.e., creation of the instance
+ * of 'Product' class doesn't make the decorators run again.
+ * 
+ * All the decorators -- Class, Property, Method, Accessor & 
+ * Parameter Decorators, all of them execute when we define the
+ * class, they don't run at runtime, instead, decorators allow
+ * the developers to do additional behind the scenes setup 
+ * work when a class is defined, and that's the core use-case
+ * behind using a meta programming concept like decorators.
+ */
+
+// 'Product' class object instantiation doesn't trigger any decorators to be executed
+const b1 = new Product('Book', 100);
+const b2 = new Product('Book', 143.2);
+
+
+
+/**
  * Output
  * ------
  * app.ts:11 Factory: Logger()

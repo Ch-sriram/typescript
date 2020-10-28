@@ -90,4 +90,6 @@ __decorate([
     Log3,
     __param(0, Log4)
 ], Product.prototype, "getPriceWithTax", null);
+const b1 = new Product('Book', 100);
+const b2 = new Product('Book', 143.2);
 //# sourceMappingURL=app.js.map
