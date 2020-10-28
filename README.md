@@ -157,4 +157,4 @@ Note: For more info on `tsconfig.json` related to this section, check this file 
 6. Accessor, Method & Parameter Decorators: [Commit Details](https://github.com/Ch-sriram/typescript/commit/030d3092d585fea27cc42732a9d2e3735b68aec8)
 7. When Do Decorators Execute? [Commit Details](https://github.com/Ch-sriram/typescript/commit/f81a5e63284d19ec58b594be4d0fb8c2ba22dae7)
 8. Returning (& Modifying) a Class in Class Decorator: [Commit Details](https://github.com/Ch-sriram/typescript/commit/07a2578e1b28fc21f30f2a2a45b182a35bc2bdb9)
-9. Decorator Return Types for Method & Accessor Decorators (Read about [`Object.defineProperty()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) before going ahead): [Commit Details]()
+9. Decorator Return Types for Method & Accessor Decorators (Read about [`Object.defineProperty()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) before going ahead): [Commit Details](https://github.com/Ch-sriram/typescript/commit/49bc780e72aea2a916e8324d046b9e5e44100753)
