@@ -229,6 +229,66 @@ function Log4(target: any, name: string | Symbol, position: number) {
   console.log(position); // 0 => 1st parameter
 }
 
+/**
+ * We can return values in other decorators other than class
+ * decorators. The decorators where we can return something are
+ * the decorators we add to methods and accessors.
+ * 
+ * Here, in the class 'Product', we can return something from
+ * the method decorator (@Log3) and accessor decorator (@Log2)
+ * and TS will use it.
+ * 
+ * The decorators on properties (@Log) and parameters (@Log4)
+ * also can return something, but TS will ignore it. Therefore,
+ * for property/parameter decorators, return value is not used
+ * and not considered by TS.
+ * 
+ * But what can be returned by a method/accessor decorator?
+ * --------------------------------------------------------
+ * We can return a new Property Descriptor, i.e., Log2 and Log3
+ * (which are the method & accessor decorator) both get the 
+ * `descriptor` of the property/method that the decorator is
+ * attached to. Now, PTR is, Property Descriptor is a concept
+ * from JavaScript (look into: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+ * where the descriptor is different for a method and for an
+ * accessor i.e.,
+ * - Property Descriptor for Accessor (i.e., @Log2):
+ *    > {get: undefined, enumerable: false, configurable: true, set: ƒ}
+ *        configurable: true
+ *        enumerable: false
+ *        get: undefined
+ *      > set: ƒ price(val)
+ *      > __proto__: Object
+ * 
+ * - Property Descriptor for Method (i.e., @Log3):
+ *    > {writable: true, enumerable: false, configurable: true, value: ƒ}
+ *        configurable: true
+ *        enumerable: false
+ *      > value: ƒ getPriceWithTax(tax)
+ *        writable: true
+ *      > __proto__: Object
+ * 
+ * For more information, look into "Object.defineProperty()"
+ * from MDN. Therefore, we can return a Property Descriptor
+ * from any of the method or accessor decorators, where we 
+ * can set the respective properties of the descriptor as we 
+ * want them to.
+ * Example: Setting the enumerable to true in @Log2 decorator
+ *  function Log2(target: any, accessorName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+ *    console.log('Accessor Decorator: @Log2');
+ *    console.log(target);
+ *    console.log(accessorName);
+ *    console.log(descriptor);
+ *    return {
+ *      enumerable: true,
+ *      get: function price() {
+ *        return this._price;
+ *      }
+ *    }
+ *  }
+ *  
+ */
+
 // NOTE-1: To use a decorator, we definitely need a class, but we don't have to add all the decorators directly to the class.
 // NOTE-2: Here, we're only adding Decorator(s) to the property(s) of the 'Product' class.
 class Product {
