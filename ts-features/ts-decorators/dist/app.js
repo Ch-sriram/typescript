@@ -183,10 +183,10 @@ function validate(obj) {
         for (const validator of objectValidatorConfig[prop]) {
             switch (validator) {
                 case 'required':
-                    isValid = isValid && (!!obj[prop]);
+                    isValid &&= (!!obj[prop]);
                     break;
                 case 'positive':
-                    isValid = isValid && (obj[prop] > 0);
+                    isValid &&= (obj[prop] > 0);
                     break;
                 default: break;
             }

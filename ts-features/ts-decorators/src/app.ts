@@ -525,33 +525,26 @@ interface ValidatorConfig {
 // validator has been registered yet.
 const registeredValidators: ValidatorConfig = {};
 
-// Property Decorator
-function Required(target: any, propName: string) {
-  `
-  'target' contains the 'constructor' property which contains the 'length' and 'name' property, where 'name' is the name of the class on which this decorator was called on.
-
-  Therefore, 'target.constructor.name' is "Course" in this 
-  case. In this case, 'propName' is "title"
-  `
-
+// Common Property Decorator Utility Method
+function addValidator(target: any, propName: string, validator: string) {
   const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
-  
   registeredValidators[target.constructor.name] = {
     ...registeredValidators[target.constructor.name],
-    [propName]: [...validators, 'required'],
+    [propName]: [...validators, validator],
   }
 }
 
 // Property Decorator
-function PositiveNumber(target: any, propName: string) {
-  `In this case, 'propName' is "price"`
-  const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
-  
-  registeredValidators[target.constructor.name] = {
-    ...registeredValidators[target.constructor.name],
-    [propName]: [...validators, 'positive'],
-  }
-}
+`
+'target' contains the 'constructor' property which contains 
+the 'length' and 'name' property, where 'name' is the name of 
+the class on which this decorator was called on.
+
+Therefore, 'target.constructor.name' is "Course" in this 
+case. In this case, 'propName' is "title"
+`
+const Required = (target: any, propName: string) => addValidator(target, propName, 'required');
+const Positive = (target: any, propName: string) => addValidator(target, propName, 'positive');
 
 // Validator Method
 function validate(obj: any) {
@@ -588,10 +581,10 @@ function validate(obj: any) {
     for (const validator of objectValidatorConfig[prop]) {
       switch (validator) {
         case 'required':
-          isValid = isValid && (!!obj[prop]); // return true if the value is non-empty: `obj[prop]` will be false if it contains an empty string i.e., ''.
+          isValid &&= (!!obj[prop]); // return true if the value is non-empty: `obj[prop]` will be false if it contains an empty string i.e., ''.
           break;
         case 'positive':
-          isValid = isValid && (obj[prop] > 0);
+          isValid &&= (obj[prop] > 0);
           break;
         default: break;
       }
