@@ -436,15 +436,15 @@ button.addEventListener('click', p.showMessage); // This works with @Autobind
 
 ///////////////////////////////////////////////////////////////
 // VALIDATION WITH DECORATORS
-class _Course {
-  title: string;
-  price: number;
+// class _Course {
+//   title: string;
+//   price: number;
 
-  constructor(title: string, price: number) {
-    this.title = title;
-    this.price = price;
-  }
-}
+//   constructor(title: string, price: number) {
+//     this.title = title;
+//     this.price = price;
+//   }
+// }
 
 /**
  * To instantiate the instance of the 'Course' class, we've to
@@ -469,17 +469,17 @@ class _Course {
  * For that, we can use decorators as follows:
  */
 
-const _courseForm = document.querySelector('form')!;
-_courseForm.addEventListener('submit', event => {
-  event.preventDefault(); // when we submit the form, prevent the default operation, which to send data using GET/POST method
+// const _courseForm = document.querySelector('form')!;
+// _courseForm.addEventListener('submit', event => {
+//   event.preventDefault(); // when we submit the form, prevent the default operation, which to send data using GET/POST method
 
-  // extract the data from the `title`
-  const title = (document.getElementById('title') as HTMLInputElement).value;
-  const price = +(document.getElementById('price') as HTMLInputElement).value; // instead of parseInt(), we can simply add a '+' in front of the value and it would be converted to a 'number' typed data.
+//   // extract the data from the `title`
+//   const title = (document.getElementById('title') as HTMLInputElement).value;
+//   const price = +(document.getElementById('price') as HTMLInputElement).value; // instead of parseInt(), we can simply add a '+' in front of the value and it would be converted to a 'number' typed data.
 
-  const createdCourse = new _Course(title, price);
-  console.log(createdCourse);
-});
+//   const createdCourse = new _Course(title, price);
+//   console.log(createdCourse);
+// });
 
 /**
  * In the courseForm method above, we're simply taking any 
@@ -510,4 +510,120 @@ _courseForm.addEventListener('submit', event => {
  * the 'Course' class' instance as a parameter.
  */
 
+// interface for storing the validators
+interface ValidatorConfig {
+  // [property: string]: {} is the class name to which the validator config is attached to
+  [property: string]: {
+    // In [validatableProp: string], validatableProp is the name of the property on which the validator is acting on. In this case, validatableProp can be `title` and `price`
+    [validatableProp: string]: string[] // list of validators - Example: ['required', 'positive', ...]
+  }
+}
 
+// now we can create our registered validator config here, 
+// which is initially an empty object, because when the 3rd 
+// party application gets loaded, we will see that no 
+// validator has been registered yet.
+const registeredValidators: ValidatorConfig = {};
+
+// Property Decorator
+function Required(target: any, propName: string) {
+  `
+  'target' contains the 'constructor' property which contains the 'length' and 'name' property, where 'name' is the name of the class on which this decorator was called on.
+
+  Therefore, 'target.constructor.name' is "Course" in this 
+  case. In this case, 'propName' is "title"
+  `
+
+  const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
+  
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [...validators, 'required'],
+  }
+}
+
+// Property Decorator
+function PositiveNumber(target: any, propName: string) {
+  `In this case, 'propName' is "price"`
+  const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
+  
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [...validators, 'positive'],
+  }
+}
+
+// Validator Method
+function validate(obj: any) {
+  `
+  'obj' we pass here is the instance of 'Course' class, which 
+  will have a 'constructor' property and that 'constructor' 
+  property has the 'name' property which is the name of the 
+  class - "Course".
+  `
+  const objectValidatorConfig = registeredValidators[obj.constructor.name];
+  // registeredValidators[obj.constructor.name] gets us the object which has the following properties (in this case):
+  `
+  {
+    title: ['required'],
+    price: ['positive'],
+  }
+  `
+
+  // if there's no validator configuration, then return true without checking for validation
+  if (!objectValidatorConfig) {
+    return true;
+  }
+
+  // use for..in loop to iterate through each property in the 
+  // validator config and for each type of config, check the 
+  // validation of the corresponding property against the 
+  // validation logic.
+  let isValid = true;
+  for (const prop in objectValidatorConfig) {
+    `
+    prop: string[] -- prop is a string array, so we iterate
+                      through it using the for..of loop.
+    `
+    for (const validator of objectValidatorConfig[prop]) {
+      switch (validator) {
+        case 'required':
+          isValid = isValid && (!!obj[prop]); // return true if the value is non-empty: `obj[prop]` will be false if it contains an empty string i.e., ''.
+          break;
+        case 'positive':
+          isValid = isValid && (obj[prop] > 0);
+          break;
+        default: break;
+      }
+    }
+  }
+  return isValid;
+}
+
+
+// Our class on which we apply our property decorators
+class Course {
+  @Required title: string;
+  @Required @PositiveNumber price: number;
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this.price = price;
+  }
+}
+
+
+document.querySelector('form')!.addEventListener('submit', event => {
+  event.preventDefault();
+  const title = (document.getElementById('title') as HTMLInputElement).value;
+  const price = +(document.getElementById('price') as HTMLInputElement).value;
+
+  const createdCourse = new Course(title, price);
+
+  if (!validate(createdCourse)) {
+    alert('Invalid input, please try again!');
+    return;
+  }
+
+  console.log(createdCourse);
+});

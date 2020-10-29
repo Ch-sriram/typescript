@@ -160,4 +160,5 @@ Note: For more info on `tsconfig.json` related to this section, check this file 
 9. Decorator Return Types for Method & Accessor Decorators (Read about [`Object.defineProperty()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) before going ahead): [Commit Details](https://github.com/Ch-sriram/typescript/commit/49bc780e72aea2a916e8324d046b9e5e44100753)
 10. Returning Descriptor From A Method Decorator (Ex: Creating an `@Autobind` Decorator): [Commit Details](https://github.com/Ch-sriram/typescript/commit/c8c8fb90120314fb6b863c922684ad783498b2f7)
 11. Validation with Decorators
-    1. Why to validate using Decorators? [Commit Details](https://github.com/Ch-sriram/typescript/commit/9ed8251918a4bf2126695c204c4fe6acdd673262)
+    1. Why to Validate Using Decorators? [Commit Details](https://github.com/Ch-sriram/typescript/commit/9ed8251918a4bf2126695c204c4fe6acdd673262)
+    2. Implementation of Validation Using Decorators: [Commit Details]()

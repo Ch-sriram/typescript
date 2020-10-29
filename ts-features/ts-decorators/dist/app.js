@@ -135,18 +135,87 @@ __decorate([
 ], Printer2.prototype, "showMessage", null);
 const p = new Printer2();
 button.addEventListener('click', p.showMessage);
-class _Course {
+const registeredValidators = {};
+function Required(target, propName) {
+    `
+  'target' contains the 'constructor' property which contains the 'length' and 'name' property, where 'name' is the name of the class on which this decorator was called on.
+
+  Therefore, 'target.constructor.name' is "Course" in this 
+  case. In this case, 'propName' is "title"
+  `;
+    const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
+    registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name],
+        [propName]: [...validators, 'required'],
+    };
+}
+function PositiveNumber(target, propName) {
+    `In this case, 'propName' is "price"`;
+    const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
+    registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name],
+        [propName]: [...validators, 'positive'],
+    };
+}
+function validate(obj) {
+    `
+  'obj' we pass here is the instance of 'Course' class, which 
+  will have a 'constructor' property and that 'constructor' 
+  property has the 'name' property which is the name of the 
+  class - "Course".
+  `;
+    const objectValidatorConfig = registeredValidators[obj.constructor.name];
+    `
+  {
+    title: ['required'],
+    price: ['positive'],
+  }
+  `;
+    if (!objectValidatorConfig) {
+        return true;
+    }
+    let isValid = true;
+    for (const prop in objectValidatorConfig) {
+        `
+    prop: string[] -- prop is a string array, so we iterate
+                      through it using the for..of loop.
+    `;
+        for (const validator of objectValidatorConfig[prop]) {
+            switch (validator) {
+                case 'required':
+                    isValid = isValid && (!!obj[prop]);
+                    break;
+                case 'positive':
+                    isValid = isValid && (obj[prop] > 0);
+                    break;
+                default: break;
+            }
+        }
+    }
+    return isValid;
+}
+class Course {
     constructor(title, price) {
         this.title = title;
         this.price = price;
     }
 }
-const _courseForm = document.querySelector('form');
-_courseForm.addEventListener('submit', event => {
+__decorate([
+    Required
+], Course.prototype, "title", void 0);
+__decorate([
+    Required,
+    PositiveNumber
+], Course.prototype, "price", void 0);
+document.querySelector('form').addEventListener('submit', event => {
     event.preventDefault();
     const title = document.getElementById('title').value;
     const price = +document.getElementById('price').value;
-    const createdCourse = new _Course(title, price);
+    const createdCourse = new Course(title, price);
+    if (!validate(createdCourse)) {
+        alert('Invalid input, please try again!');
+        return;
+    }
     console.log(createdCourse);
 });
 //# sourceMappingURL=app.js.map
