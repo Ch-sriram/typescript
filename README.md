@@ -161,4 +161,4 @@ Note: For more info on `tsconfig.json` related to this section, check this file 
 10. Returning Descriptor From A Method Decorator (Ex: Creating an `@Autobind` Decorator): [Commit Details](https://github.com/Ch-sriram/typescript/commit/c8c8fb90120314fb6b863c922684ad783498b2f7)
 11. Validation with Decorators
     1. Why to Validate Using Decorators? [Commit Details](https://github.com/Ch-sriram/typescript/commit/9ed8251918a4bf2126695c204c4fe6acdd673262)
-    2. Implementation of Validation Using Decorators: [Commit Details]()
+    2. Implementation of Validation Using Decorators: [Commit Details](https://github.com/Ch-sriram/typescript/commit/c0e37ff70bc456287395edbb69d6e753e53b50a1)
