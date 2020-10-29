@@ -162,3 +162,7 @@ Note: For more info on `tsconfig.json` related to this section, check this file 
 11. Validation with Decorators
     1. Why to Validate Using Decorators? [Commit Details](https://github.com/Ch-sriram/typescript/commit/9ed8251918a4bf2126695c204c4fe6acdd673262)
     2. Implementation of Validation Using Decorators: [Commit #1](https://github.com/Ch-sriram/typescript/commit/c0e37ff70bc456287395edbb69d6e753e53b50a1) & [Commit #2 [Shortening the code using DRY]](https://github.com/Ch-sriram/typescript/commit/9f89cc51ec63a35ecd44b0a642a879a4005729f3)
+12. Libraries that use/rely heavily on Decorators are the following
+    1. **[typestack/class-validator](https://github.com/typestack/class-validator)** &mdash; Decorator based property validation for classes.
+    2. **[Angular](https://angular.io/guide/component-overview)** &mdash; Frontend JS/TS Framework that relies heavily on decorator implementations.
+    3. **[NestJS](https://docs.nestjs.com/controllers#routing)** &mdash; A progressive Node.js framework for building efficient, reliable and scalable server-side applications, which also uses a lot of decorator based meta programming constructs for making a `GET`, `POST`, etc routes.
