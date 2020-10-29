@@ -136,27 +136,23 @@ __decorate([
 const p = new Printer2();
 button.addEventListener('click', p.showMessage);
 const registeredValidators = {};
-function Required(target, propName) {
-    `
-  'target' contains the 'constructor' property which contains the 'length' and 'name' property, where 'name' is the name of the class on which this decorator was called on.
+function addValidator(target, propName, validator) {
+    const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
+    registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name],
+        [propName]: [...validators, validator],
+    };
+}
+`
+'target' contains the 'constructor' property which contains 
+the 'length' and 'name' property, where 'name' is the name of 
+the class on which this decorator was called on.
 
-  Therefore, 'target.constructor.name' is "Course" in this 
-  case. In this case, 'propName' is "title"
-  `;
-    const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
-    registeredValidators[target.constructor.name] = {
-        ...registeredValidators[target.constructor.name],
-        [propName]: [...validators, 'required'],
-    };
-}
-function PositiveNumber(target, propName) {
-    `In this case, 'propName' is "price"`;
-    const validators = registeredValidators[target.constructor.name]?.[propName] ?? [];
-    registeredValidators[target.constructor.name] = {
-        ...registeredValidators[target.constructor.name],
-        [propName]: [...validators, 'positive'],
-    };
-}
+Therefore, 'target.constructor.name' is "Course" in this 
+case. In this case, 'propName' is "title"
+`;
+const Required = (target, propName) => addValidator(target, propName, 'required');
+const PositiveNumber = (target, propName) => addValidator(target, propName, 'positive');
 function validate(obj) {
     `
   'obj' we pass here is the instance of 'Course' class, which 

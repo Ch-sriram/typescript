@@ -544,7 +544,7 @@ Therefore, 'target.constructor.name' is "Course" in this
 case. In this case, 'propName' is "title"
 `
 const Required = (target: any, propName: string) => addValidator(target, propName, 'required');
-const Positive = (target: any, propName: string) => addValidator(target, propName, 'positive');
+const PositiveNumber = (target: any, propName: string) => addValidator(target, propName, 'positive');
 
 // Validator Method
 function validate(obj: any) {
