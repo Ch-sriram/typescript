@@ -161,7 +161,7 @@ Note: For more info on `tsconfig.json` related to this section, check this file 
 10. Returning Descriptor From A Method Decorator (Ex: Creating an `@Autobind` Decorator): [Commit Details](https://github.com/Ch-sriram/typescript/commit/c8c8fb90120314fb6b863c922684ad783498b2f7)
 11. Validation with Decorators
     1. Why to Validate Using Decorators? [Commit Details](https://github.com/Ch-sriram/typescript/commit/9ed8251918a4bf2126695c204c4fe6acdd673262)
-    2. Implementation of Validation Using Decorators: [Commit #1](https://github.com/Ch-sriram/typescript/commit/c0e37ff70bc456287395edbb69d6e753e53b50a1), [Commit #2 [Shortening the code using DRY]](https://github.com/Ch-sriram/typescript/commit/9f89cc51ec63a35ecd44b0a642a879a4005729f3) & [Commit #3 [Bug Fixes]]()
+    2. Implementation of Validation Using Decorators: [Commit #1](https://github.com/Ch-sriram/typescript/commit/c0e37ff70bc456287395edbb69d6e753e53b50a1), [Commit #2 [Shortening the code using DRY]](https://github.com/Ch-sriram/typescript/commit/9f89cc51ec63a35ecd44b0a642a879a4005729f3) & [Commit #3 [Bug Fixes]](https://github.com/Ch-sriram/typescript/commit/b0776ff8970afd50200a3ee64ff8a904a94628b9)
 12. Libraries that use/rely heavily on Decorators are the following
     1. **[typestack/class-validator](https://github.com/typestack/class-validator)** &mdash; Decorator based property validation for classes.
     2. **[Angular](https://angular.io/guide/component-overview)** &mdash; Frontend JS/TS Framework that relies heavily on decorator implementations.
