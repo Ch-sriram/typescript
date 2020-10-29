@@ -377,3 +377,58 @@ const b2 = new Product('Book', 143.2);
  * app.ts:215 getPriceWithTax
  * app.ts:216 {writable: true, enumerable: false, configurable: true, value: ƒ}
  */
+
+///////////////////////////////////////////////////////////////
+// Method Decorator Returning Descriptor Example
+// For this, we'll create a button in 'index.html'
+
+class Printer {
+  message = 'This works!';
+
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const printer = new Printer();
+
+const button = document.querySelector('button')!;
+button.addEventListener('click', printer.showMessage); // undefined -- because for an event listener, whenever we point to a function that should be executed, the `this` keyword inside of that function will not have the same context compared to just calling `printer.showMessage()`
+// in case of an event listener, the `this` refers to the target of the event and not the reference that calls the function.
+
+// To get around this problem, we can explicitly use the bind()
+// method to bind the `this` of the event listener to the 
+// context of the 'printer' object as follows:
+button.addEventListener('click', printer.showMessage.bind(printer)); // This works!
+
+// But another way to get around this problem is to make a 
+// method decorator that can be added to showMessage() method
+// to automatically bind `this` to the surrounding class every
+// time the showMessage() is called, no matter where we call it
+
+// this is the method decorator that we'll apply to the 'Printer2' class' showMessage() method below.
+function Autobind(_: any, _2: string | Symbol, descriptor: PropertyDescriptor) {
+  // descriptor contains 'value' property which has the function that the 'Autobind' decorator is applied on
+  const originalMethod = descriptor.value;
+  const adjacentDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    get() {
+      const boundFunction = originalMethod.bind(this); // `this` refers to the object on which we defined the getter method i.e., `get()` method.
+      return boundFunction;
+    }
+  };
+  return adjacentDescriptor;
+}
+
+class Printer2 {
+  message = 'This works with @Autobind';
+
+  @Autobind
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer2();
+button.addEventListener('click', p.showMessage); // This works with @Autobind

@@ -98,4 +98,41 @@ __decorate([
 ], Product.prototype, "getPriceWithTax", null);
 const b1 = new Product('Book', 100);
 const b2 = new Product('Book', 143.2);
+class Printer {
+    constructor() {
+        this.message = 'This works!';
+    }
+    showMessage() {
+        console.log(this.message);
+    }
+}
+const printer = new Printer();
+const button = document.querySelector('button');
+button.addEventListener('click', printer.showMessage);
+button.addEventListener('click', printer.showMessage.bind(printer));
+function Autobind(_, _2, descriptor) {
+    const originalMethod = descriptor.value;
+    const adjacentDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+            const boundFunction = originalMethod.bind(this);
+            return boundFunction;
+        }
+    };
+    return adjacentDescriptor;
+}
+class Printer2 {
+    constructor() {
+        this.message = 'This works with @Autobind';
+    }
+    showMessage() {
+        console.log(this.message);
+    }
+}
+__decorate([
+    Autobind
+], Printer2.prototype, "showMessage", null);
+const p = new Printer2();
+button.addEventListener('click', p.showMessage);
 //# sourceMappingURL=app.js.map
