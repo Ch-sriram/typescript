@@ -135,4 +135,18 @@ __decorate([
 ], Printer2.prototype, "showMessage", null);
 const p = new Printer2();
 button.addEventListener('click', p.showMessage);
+class _Course {
+    constructor(title, price) {
+        this.title = title;
+        this.price = price;
+    }
+}
+const _courseForm = document.querySelector('form');
+_courseForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const title = document.getElementById('title').value;
+    const price = +document.getElementById('price').value;
+    const createdCourse = new _Course(title, price);
+    console.log(createdCourse);
+});
 //# sourceMappingURL=app.js.map

@@ -432,3 +432,82 @@ class Printer2 {
 
 const p = new Printer2();
 button.addEventListener('click', p.showMessage); // This works with @Autobind
+
+
+///////////////////////////////////////////////////////////////
+// VALIDATION WITH DECORATORS
+class _Course {
+  title: string;
+  price: number;
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this.price = price;
+  }
+}
+
+/**
+ * To instantiate the instance of the 'Course' class, we've to
+ * send in valid `title` and valid `price` properties into 
+ * the constructor when instantiating the 'Course' class' 
+ * object.
+ * 
+ * But a common scenario we might encounter in some 
+ * applications is that we fetch data (let's say from a web
+ * resource) and we get data where we've a couple of courses
+ * instantiated from the 'Course' class' instance or in another
+ * scenario, we let the users enter the data, and we assume it
+ * is always right, but we don't know what the user is 
+ * entering, we're not guaranteed that the entered data is 
+ * valid. Therefore, we would like to validate the input.
+ * 
+ * That's the scenario we'll fake here. In our 'index.html' 
+ * file, we can have a simple form which we submit, and before
+ * submitting the form, we should be able to validate it 
+ * properly.
+ * 
+ * For that, we can use decorators as follows:
+ */
+
+const _courseForm = document.querySelector('form')!;
+_courseForm.addEventListener('submit', event => {
+  event.preventDefault(); // when we submit the form, prevent the default operation, which to send data using GET/POST method
+
+  // extract the data from the `title`
+  const title = (document.getElementById('title') as HTMLInputElement).value;
+  const price = +(document.getElementById('price') as HTMLInputElement).value; // instead of parseInt(), we can simply add a '+' in front of the value and it would be converted to a 'number' typed data.
+
+  const createdCourse = new _Course(title, price);
+  console.log(createdCourse);
+});
+
+/**
+ * In the courseForm method above, we're simply taking any 
+ * kind of input from the form and saving that information
+ * without validating the information.
+ * 
+ * For example, the form can take in Courses with `title = ""`
+ * and `price = 0`. Any kind of input can be given as input, 
+ * and it will be accepted.
+ * 
+ * What we want is to validate the data before saving it.
+ * We can ofcourse validate the data inside the courseForm's
+ * event before creating the object itself.
+ * 
+ * But that means that whenever we create a new instance of the
+ * 'Course' object, we've to add the validation logic inside
+ * the courseForm's event. But, wouldn't it be nice to have
+ * the validation logic included in the 'Course' class with the
+ * help of decorators.
+ * 
+ * Therefore, we would use 2 decorator methods, which are 
+ * Required() and PositiveNumber(), which are added to the 
+ * respective properties of the class which we would like to
+ * have them validated.
+ * 
+ * And then we can write code for a validate() method, which
+ * will run after creating the instance for 'Course' class with
+ * the 'Course' class' instance as a parameter.
+ */
+
+
